@@ -1,3 +1,21 @@
+var ElementList = (function () {
+    function ElementList(nl) {
+        this.array = Array.prototype.slice.call(nl);
+    }
+    ElementList.prototype.forEach = function (fn) {
+        this.array.forEach(fn);
+        return this;
+    };
+    ElementList.prototype.addClass = function (klass) {
+        var _this = this;
+        var classes = klass.split(' ').filter(function (x) { return x !== ''; });
+        classes.forEach(function (c) {
+            _this.forEach(function (x) { return x.classList.add(c); });
+        });
+        return this;
+    };
+    return ElementList;
+})();
 var page;
 (function (page) {
     page.gameSystems = [
@@ -24,6 +42,11 @@ var page;
             i.width = 32;
             testDiv.appendChild(i);
         });
+        var dgs = new ElementList(document.querySelectorAll('[data-gamesystem]'));
+        dgs.forEach(function (x) {
+            var gs = x.dataset['gamesystem'];
+        });
+        console.log(dgs);
     }
     page.init = init;
 })(page || (page = {}));

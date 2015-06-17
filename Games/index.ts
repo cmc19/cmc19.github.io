@@ -1,9 +1,37 @@
-module page {
-    interface IGameSystem {
-        key: string;
-        name: string;
-        icon?: string;
+interface IGameSystem {
+    key: string;
+    name: string;
+    icon?: string;
+}
+
+
+class ElementList {
+    private array: HTMLElement[];
+    constructor(nl: NodeList) {
+        this.array = Array.prototype.slice.call(nl);
     }
+
+    forEach(fn: (x: HTMLElement) => void): ElementList {
+        this.array.forEach(fn);
+        return this;
+    }
+
+    addClass(klass: string): ElementList {
+        let classes = klass.split(' ').filter(x=> x !== '');
+
+        classes.forEach(c=> {
+            this.forEach(x=> x.classList.add(c));
+
+        });
+
+        return this;
+    }
+}
+
+
+
+module page {
+
 
     export var gameSystems: IGameSystem[] = [
         { key: 'ps3', name: 'PlayStation 3' },
@@ -35,8 +63,20 @@ module page {
             i.width = 32;
             testDiv.appendChild(i);
         });
+
+
+
+        var dgs = new ElementList(document.querySelectorAll('[data-gamesystem]'));
+
+        dgs.forEach(x=> {
+            let gs = x.dataset['gamesystem'];
+
+        });
+
+        console.log(dgs);
     }
 }
+
 
 page.init();
 
