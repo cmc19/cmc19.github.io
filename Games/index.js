@@ -3,10 +3,10 @@ var page;
     page.gameSystems = [
         { key: 'ps3', name: 'PlayStation 3' },
         { key: 'pc', name: 'PC' },
-        { key: 'N64', name: 'Nintendo 64' },
-        { key: 'GC', name: 'GameCube' },
-        { key: 'GBA', name: 'Game Boy Advanced' },
-        { key: 'SNES', name: 'Super Nintendo Entertainment System' },
+        { key: 'n64', name: 'Nintendo 64' },
+        { key: 'gc', name: 'GameCube' },
+        { key: 'gba', name: 'Game Boy Advanced' },
+        { key: 'snes', name: 'Super Nintendo Entertainment System' },
         { key: 'wii', name: 'Wii' },
         { key: 'ps4', name: 'PlayStation 4' }
     ];
