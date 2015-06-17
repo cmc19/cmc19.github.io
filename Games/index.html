@@ -1,0 +1,191 @@
+<html>
+<head>
+    <title>Best Games</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <!--  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+
+    <style>
+        .table {
+            width: 140px;
+        }
+
+            .table > tbody > tr > td {
+                padding: 0px;
+            }
+
+        h1 > small {
+            margin-top: 12px;
+            float: right;
+        }
+
+        .st {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="container" style="width:800px">
+    <h1>All Time</h1>
+    <div>
+        <ol class="alltime">
+            <li data-gamesystem="ps3">The Last of us <sup>1</sup></li>
+            <li data-gamesystem="pc">Batman Arkham City</li>
+            <li data-gamesystem="n64">Banjo Tooie</li>
+            <li data-gamesystem="n64">The Legend of Zelda: Ocarina of Time <sup>1</sup></li>
+            <li data-gamesystem="n64">Star Fox 64</li>
+            <li data-gamesystem="pc">Kerbal Space Program</li>
+            <li data-gamesystem="gcn">Sonic Adventure 2 Battle <sup>1</sup></li>
+            <li data-gamesystem="pc">Portal 2</li>
+            <li data-gamesystem="n64"><a href="http://en.wikipedia.org/wiki/Donkey_Kong_64">Donkey Kong 64</a></li>
+            <li data-gamesystem="pc">Dirt 2</li>
+            <li data-gamesystem="gcn">The Legend of Zelda: The Windwaker</li>
+            <li data-gamesystem="gba">Sonic Advanced (all of them, if i had to pick one, it would be 2)</li>
+            <li data-gamesystem="snes">The Legend of Zelda: Link to the past <sup>1</sup></li>
+            <li data-gamesystem="pc">UT99</li>
+        </ol>
+        <table class="table" style="width:140px;" id="allTimeStats"></table>
+    </div>
+    <p><sup>1</sup> Defined there respected console generation IMHO</p>
+    <hr />
+    <h1>Games that stand out <small> but dont make the list</small></h1>
+    <ul class="standout">
+        <li data-gamesystem="pc">Team Fortress 2</li>
+        <li data-gamesystem="n64">
+            <a href="http://en.wikipedia.org/wiki/Super_Smash_Bros">Super Smash Bros</a>
+        </li>
+        <li data-gamesystem="pc"><a href="http://en.wikipedia.org/wiki/Earthsiege_2">EarthSiege 2</a></li>
+        <li data-gamesystem="pc"><a href="http://en.wikipedia.org/wiki/Myst">Myst</a></li>
+        <li data-gamesystem="pc">Half Life 2</li>
+        <li data-gamesystem="n64">Toy story 2</li>
+        <li data-gamesystem="gcn">Star Fox Adventures</li>
+
+        <li data-gamesystem="pc">Roller Coster Tycoon</li>
+        <li data-gamesystem="pc">Sim City 4</li>
+        <li data-gamesystem="pc">Sim City 2000</li>
+        <li data-gamesystem="pc">Sim Copter</li>
+        <li data-gamesystem="wii">Lego Star Wars</li>
+        <li data-gamesystem="pc">Star Wars: Battlefront 2</li>
+        <li data-gamesystem="gcn">Animal Crossing</li>
+        <li data-gamesystem="pc">F1 2013</li>
+        <li data-gamesystem="pc">Far Cry 3</li>
+        <li data-gamesystem="n64">Rush 2049</li>
+        <li data-gamesystem="ps4">inFAMOUS Second Son</li>
+    </ul>
+    <table class="table" style="width:140px;" id="standOutStats"></table>
+
+    <hr />
+    <h1>Multiplayer</h1>
+    <ul class="multi">
+        <li data-gamesystem="pc">Killing Floor</li>
+        <li data-gamesystem="pc">Team Fortress 2</li>
+        <li data-gamesystem="pc">TrackMania Nations</li>
+        <li data-gamesystem="pc" class="st">Payday 2</li>
+    </ul>
+    <table class="table" id="multi"></table>
+    <hr />
+    <h1>Trending <small>These games might make the list (someday)</small></h1>
+    <ul>
+        <li>Killing floor 2</li>
+        <li>Starbound</li>
+        <li>Next Car Game</li>
+    </ul>
+    <hr />
+    <h1>Best Game Series</h1>
+    <ol>
+        <li>Batman Arkham</li>
+        <li>Legend of Zelda</li>
+
+        <li>Sonic</li>
+
+        <li>Star Fox</li>
+
+        <li>
+            Banjo-Kazooie
+            <ul>
+                <li>This would be higher on the list if it was not for Microsoft</li>
+            </ul>
+        </li>
+    </ol>
+
+    <hr />
+
+    <h1>Best Game Concepts</h1>
+
+    <ul>
+        <li>
+            <b>The Lego Games</b>
+            <p>Lego Star Wars started a really awesome game collection combining legos with comics and movies.</p>
+        </li>
+    </ul>
+
+    <h1>Best Game Intros</h1>
+
+    <ul>
+        <li>
+            <b>Batman Arkham City</b>
+            <p>Such a cool way to start an amazing game. It really pulls you into the story within the first few minutes. </p>
+        </li>
+        <li>
+            <b>The Last of Us</b>
+            <p>Wow. Not much can be said, it is extremely intense yet very grounded.</p>
+        </li>
+    </ul>
+
+    <hr />
+    <footer>
+        <ul>
+            <li>
+                (12/24/14) Added Best Game intros
+            </li>
+            <li>
+                (11/15/2014) Changed <i>LOZ</i> to <i>The Legend of Zelda</i> <br />
+                Added Best Game Concepts
+
+            </li>
+        </ul>
+    </footer>
+    <script>
+
+        // $(function () {
+        //
+        //     $('[data-gamesystem]').each(function () {
+        //         var t = $(this).data('gamesystem');
+        //         var gs = gameSystems[t];
+        //         if (gs.icon) {
+        //             $(this).prepend('<img src="BestGames/' + gs.icon + '.ico" width="20" height="20" />');
+        //         }
+        //
+        //     });
+        //     stats('#allTimeStats', 'alltime');
+        //     stats('#standOutStats', 'standout');
+        //     stats('#multi', 'multi');
+        //     function stats(tableid, counter) {
+        //
+        //         $('[data-gamesystem]').each(function () {
+        //             var t = $(this).data('gamesystem');
+        //             var gs = gameSystems[t];
+        //
+        //             if ($(this).parent().hasClass(counter)) {
+        //                 gs[counter]++;
+        //             }
+        //         });
+        //
+        //         var allTime = _.sortBy(gameSystems, function (d) { return d[counter]; });
+        //         allTime = allTime.reverse();
+        //         allTime = _.filter(allTime, function (d) { return d[counter] != 0; })
+        //         $.each(allTime, function () {
+        //             $(tableid).append('<tr><td>' + this.name + '</td><td>' + this[counter] + '</td> </tr>')
+        //         });
+        //     }
+        //
+        // });
+    </script>
+
+    <div id=test>
+
+    </div>
+    <script src="index.js" charset="utf-8"></script>
+</body>
+
+</html>
