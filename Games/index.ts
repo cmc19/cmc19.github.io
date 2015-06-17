@@ -1,7 +1,3 @@
-
-
-
-
 module page {
     interface IGameSystem {
         key: string;
