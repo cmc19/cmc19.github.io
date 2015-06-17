@@ -18,6 +18,7 @@ var page;
     function init() {
         page.gameSystems.forEach(function (gs) {
             var i = document.createElement('img');
+            i.title = gs.icon;
             i.src = gs.icon;
             i.height = 32;
             i.width = 32;

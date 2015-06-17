@@ -28,16 +28,17 @@ module page {
     }
 
 
-var testDiv = document.getElementById('test');
+    var testDiv = document.getElementById('test');
 
     export function init() {
-gameSystems.forEach(gs=>{
-    let i = document.createElement('img');
-    i.src = gs.icon;
-    i.height=32;
-    i.width=32;
-    testDiv.appendChild(i);
-});
+        gameSystems.forEach(gs=> {
+            let i = document.createElement('img');
+            i.title = gs.icon;
+            i.src = gs.icon;
+            i.height = 32;
+            i.width = 32;
+            testDiv.appendChild(i);
+        });
     }
 }
 
