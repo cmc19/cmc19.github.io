@@ -45,6 +45,7 @@ var Page = (function () {
         this.tickCount = 0;
         this.bodyCount = document.getElementById('bodyCount');
         this.mass = document.getElementById('mass');
+        this.fpsCounter = document.getElementById('fps');
     }
     Object.defineProperty(Page.prototype, "canvas", {
         get: function () {
@@ -71,7 +72,7 @@ var Page = (function () {
         });
         createjs.Ticker.on("tick", function () { return _this.tick(); });
         createjs.Ticker.setFPS(60);
-        this.fillRandom();
+        this.fillRandom(200, 400);
         this.fillWindow();
     };
     Page.prototype.tick = function () {
@@ -116,6 +117,7 @@ var Page = (function () {
             var mass = 0;
             this.planets.forEach(function (x) { return mass += x.mass; });
             this.mass.innerText = mass.toString();
+            this.fpsCounter.innerText = createjs.Ticker.getMeasuredFPS().toString();
         }
     };
     Page.prototype.createPlanet = function (x, y, mass, vx, vy) {
@@ -125,8 +127,8 @@ var Page = (function () {
         this.planets.push(p);
         this.stage.addChild(p.shape);
     };
-    Page.prototype.fillRandom = function () {
-        for (var i = 0; i < random(100, 300); i++) {
+    Page.prototype.fillRandom = function (min, max) {
+        for (var i = 0; i < random(min, max); i++) {
             this.createPlanet(random(0, window.innerWidth), random(0, window.innerHeight), 1, 0, 0);
         }
     };

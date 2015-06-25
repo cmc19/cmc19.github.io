@@ -75,7 +75,7 @@ class Page {
         createjs.Ticker.on("tick", () => this.tick());
         createjs.Ticker.setFPS(60);
 
-        this.fillRandom();
+        this.fillRandom(200,400);
         this.fillWindow();
     }
 
@@ -85,41 +85,7 @@ class Page {
         let allObjs = this.planets;
         let stage = this.stage;
         let ignore = [];
-        // allObjs.forEach(function(obj1) {
-        //     return;
-        //     if (ignore.indexOf(obj1) !== -1) return;
-        //     allObjs.forEach(function(obj2) {
-        //         let diffX = obj2.shape.x - obj1.shape.x;
-        //         let diffY = obj2.shape.y - obj1.shape.y;
-        //         var distSquare = diffX * diffX + diffY * diffY;
-        //         var dist = Math.sqrt(distSquare);
-        //         if (obj1 != obj2) {
-        //             if (dist > obj1.w / 2 + obj2.w / 2) {
-        //                 //If you add mass to the objects change to obj1.mass * obj2.mass instead of 50
-        //                 // var totalForce = 50 / distSquare;
-        //                 var totalForce = (obj2.mass * obj1.mass) / distSquare;
-        //                 obj1.vX += totalForce * diffX / dist;
-        //                 obj1.vY += totalForce * diffY / dist;
-        //             } else {
-        //                 //Collision has occurred
-        //                 //If you add mass to the objects change to
-        //                 //tempX = (obj1.mass*obj1.vx + obj2.mass*obj2.vx)/(obj1.mass+obj2.mass);
-        //                 //tempY = (obj1.mass*obj1.vy + obj2.mass*obj2.vy)/(obj1.mass+obj2.mass);
-        //                 var tempX = (obj1.vX + obj2.vX) / 2;
-        //                 var tempY = (obj1.vY + obj2.vY) / 2;
-        //                 obj1.vX = tempX; obj2.vX = tempX;
-        //                 obj1.vY = tempY; obj2.vY = tempY;
-        //
-        //                 obj1.mass += obj2.mass;
-        //                 obj1.update();
-        //
-        //                 stage.removeChild(obj2.shape);
-        //                 ignore.push(obj2);
-        //                 obj2['ignore'] = true;
-        //             }
-        //         }
-        //     });
-        // });
+
 
 
         let combos = findAllPossibleCombos(allObjs, 2, 2);
@@ -181,12 +147,14 @@ class Page {
             let mass = 0;
             this.planets.forEach(x=> mass += x.mass);
             this.mass.innerText = mass.toString();
+
+            this.fpsCounter.innerText = createjs.Ticker.getMeasuredFPS().toString();
         }
     }
 
     bodyCount: HTMLSpanElement = document.getElementById('bodyCount');
     mass: HTMLSpanElement = document.getElementById('mass');
-
+fpsCounter : HTMLSpanElement = document.getElementById('fps');
     createPlanet(x, y, mass, vx = 0, vy = 0) {
         let p = new Planet(this.stage, x, y, mass, vx, vy);
 
@@ -208,8 +176,8 @@ class Page {
         // this.stage.addChild(obj);
     }
 
-    fillRandom() {
-        for (let i = 0; i < random(100, 300); i++) {
+    fillRandom(min,max) {
+        for (let i = 0; i < random(min,max); i++) {
             this.createPlanet(random(0, window.innerWidth), random(0, window.innerHeight), 1, 0, 0);
         }
 
