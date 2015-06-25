@@ -3,7 +3,7 @@
 /// <reference path="./scripts/color.d.ts"/>
 
 
-const speedModifier = 1;//25
+const speedModifier = 5;//25
 
 
 function random(min, max) {
@@ -79,7 +79,9 @@ class Page {
         this.fillWindow();
     }
 
+    tickCount = 0;
     tick() {
+        this.tickCount++;
         let allObjs = this.planets;
         let stage = this.stage;
         let ignore = [];
@@ -173,7 +175,17 @@ class Page {
 
         this.planets = this.planets.filter(x=> x['ignore'] === undefined);
         this.stage.update();
+
+        if (this.tickCount % 60 == 0) {
+            this.bodyCount.innerText = this.planets.length.toString();
+            let mass = 0;
+            this.planets.forEach(x=> mass += x.mass);
+            this.mass.innerText = mass.toString();
+        }
     }
+
+    bodyCount: HTMLSpanElement = document.getElementById('bodyCount');
+    mass: HTMLSpanElement = document.getElementById('mass');
 
     createPlanet(x, y, mass, vx = 0, vy = 0) {
         let p = new Planet(this.stage, x, y, mass, vx, vy);

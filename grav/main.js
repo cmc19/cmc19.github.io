@@ -1,7 +1,7 @@
 /// <reference path="./typings/jquery/jquery.d.ts"/>
 /// <reference path="./typings/easeljs/easeljs.d.ts"/>
 /// <reference path="./scripts/color.d.ts"/>
-var speedModifier = 1;
+var speedModifier = 5;
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -42,6 +42,9 @@ var Page = (function () {
         this.stage = new createjs.Stage("canvas");
         this.mouse = { startX: 0, startY: 0 };
         this.planets = [];
+        this.tickCount = 0;
+        this.bodyCount = document.getElementById('bodyCount');
+        this.mass = document.getElementById('mass');
     }
     Object.defineProperty(Page.prototype, "canvas", {
         get: function () {
@@ -72,6 +75,7 @@ var Page = (function () {
         this.fillWindow();
     };
     Page.prototype.tick = function () {
+        this.tickCount++;
         var allObjs = this.planets;
         var stage = this.stage;
         var ignore = [];
@@ -107,6 +111,12 @@ var Page = (function () {
         allObjs.forEach(function (x) { return x.tick(); });
         this.planets = this.planets.filter(function (x) { return x['ignore'] === undefined; });
         this.stage.update();
+        if (this.tickCount % 60 == 0) {
+            this.bodyCount.innerText = this.planets.length.toString();
+            var mass = 0;
+            this.planets.forEach(function (x) { return mass += x.mass; });
+            this.mass.innerText = mass.toString();
+        }
     };
     Page.prototype.createPlanet = function (x, y, mass, vx, vy) {
         if (vx === void 0) { vx = 0; }
