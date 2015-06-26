@@ -89,7 +89,7 @@ var Page = (function () {
                 var distSquareAb = diffXab * diffXab + diffYab * diffYab;
                 var dist = Math.sqrt(distSquareAb);
                 dist = dist / 2;
-                if (dist > a.w / 2 + b.w / 2) {
+                if (dist > a.width / 2 + b.width / 2) {
                     var totalForce = (a.mass * b.mass) / distSquareAb;
                     a.fX += totalForce * diffXab / dist;
                     a.fY += totalForce * diffYab / dist;
@@ -98,7 +98,7 @@ var Page = (function () {
                     a.fX += b.vX / b.mass;
                     a.fY += b.vY / b.mass;
                     a.mass += b.mass;
-                    a.update();
+                    a.updateShapeGraphics();
                     stage.removeChild(b.shape);
                     ignore.push(b);
                     b['ignore'] = true;
@@ -139,12 +139,34 @@ function sortBy(array, fn) {
         return (fn(a) > fn(b)) ? 1 : (fn(a) < fn(b)) ? -1 : 0;
     });
 }
+var SolarSystem = (function () {
+    function SolarSystem() {
+        this.objects = [];
+        this.stage = new createjs.Stage("canvas");
+        this.relationships = [];
+    }
+    SolarSystem.prototype.createPlanet = function (x, y, mass, vx, vy) {
+        if (vx === void 0) { vx = 0; }
+        if (vy === void 0) { vy = 0; }
+        var p = new Planet(this.stage, x, y, mass, vx, vy);
+        this.objects.forEach(function (x) {
+        });
+        this.objects.push(p);
+    };
+    return SolarSystem;
+})();
+var PlanetRelationship = (function () {
+    function PlanetRelationship(a, b) {
+        this.a = a;
+        this.b = b;
+    }
+    return PlanetRelationship;
+})();
 var Planet = (function () {
     function Planet(stage, x, y, mass, vx, vy) {
         if (vx === void 0) { vx = 0; }
         if (vy === void 0) { vy = 0; }
         this.shape = new createjs.Shape();
-        this.a = 0;
         this.fX = 0;
         this.fY = 0;
         this.color = new Color(randColor());
@@ -154,21 +176,23 @@ var Planet = (function () {
         obj.x = x;
         obj.y = y;
         p.mass = mass;
+        this.x = x;
+        this.y = y;
         p.vX = vx;
         p.vY = vy;
         if (this.color.getLightness() < .3) {
             this.color = this.color.lightenByAmount(1);
         }
-        this.update();
+        this.updateShapeGraphics();
     }
-    Object.defineProperty(Planet.prototype, "w", {
+    Object.defineProperty(Planet.prototype, "width", {
         get: function () {
             return this.radius * 2;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Planet.prototype, "h", {
+    Object.defineProperty(Planet.prototype, "height", {
         get: function () {
             return this.radius * 2;
         },
@@ -182,17 +206,24 @@ var Planet = (function () {
         enumerable: true,
         configurable: true
     });
-    Planet.prototype.update = function () {
-        var obj = this.shape;
-        obj.graphics.f(this.color.toCSS()).dc(0, 0, this.radius);
-    };
     Planet.prototype.tick = function () {
         var t = this;
         t.vX += t.fX / t.mass;
         t.vY += t.fY / t.mass;
-        t.shape.x += t.vX / speedModifier;
-        t.shape.y += t.vY / speedModifier;
+        t.x += t.vX / speedModifier;
+        t.y += t.vY / speedModifier;
+        this.updateShape();
         t.fX = t.fY = 0;
+    };
+    Planet.prototype.updateShape = function () {
+        this.shape.x = this.x;
+        this.shape.y = this.y;
+    };
+    Planet.prototype.updateShapeGraphics = function () {
+        var obj = this.shape;
+        obj.graphics
+            .beginFill(this.color.toCSS())
+            .drawCircle(0, 0, this.radius);
     };
     return Planet;
 })();

@@ -739,15 +739,8 @@ declare module createjs {
         clone(recursive?: boolean): Shape;
         set(props: Object): Shape;
         setTransform(x?: number, y?: number, scaleX?: number, scaleY?: number, rotation?: number, skewX?: number, skewY?: number, regX?: number, regY?: number): Shape;
-
-    m;
-    vx;
-    vy;
-    a;
-    w;
-    h;
-    fx;
-    fy;
+x:number;
+y:number;
     }
 
 

@@ -75,7 +75,7 @@ class Page {
         createjs.Ticker.on("tick", () => this.tick());
         createjs.Ticker.setFPS(60);
 
-        this.fillRandom(200,400);
+        this.fillRandom(200, 400);
         this.fillWindow();
     }
 
@@ -100,7 +100,7 @@ class Page {
                 var dist = Math.sqrt(distSquareAb);
                 dist = dist / 2;
 
-                if (dist > a.w / 2 + b.w / 2) {
+                if (dist > a.width / 2 + b.width / 2) {
                     var totalForce = (a.mass * b.mass) / distSquareAb;
                     a.fX += totalForce * diffXab / dist;
                     a.fY += totalForce * diffYab / dist;
@@ -117,7 +117,7 @@ class Page {
                     // a.vY = tempY; b.vY = tempY;
 
                     a.mass += b.mass;
-                    a.update();
+                    a.updateShapeGraphics();
 
                     stage.removeChild(b.shape);
                     ignore.push(b);
@@ -154,30 +154,16 @@ class Page {
 
     bodyCount: HTMLSpanElement = document.getElementById('bodyCount');
     mass: HTMLSpanElement = document.getElementById('mass');
-fpsCounter : HTMLSpanElement = document.getElementById('fps');
+    fpsCounter: HTMLSpanElement = document.getElementById('fps');
     createPlanet(x, y, mass, vx = 0, vy = 0) {
         let p = new Planet(this.stage, x, y, mass, vx, vy);
 
         this.planets.push(p);
         this.stage.addChild(p.shape);
-
-
-        // var obj = new createjs.Shape();
-        // obj.graphics.f(randColor()).dc(0, 0, r);//"#08F"
-        // obj.regX = obj.regY = -r;
-        // obj.x = x;
-        // obj.y = y;
-        // obj.m = r / 100;
-        // obj.vx = vx;
-        // obj.vy = vy;
-        // obj.fx = obj.fy = obj.a = 0;
-        // obj.w = obj.h = r * 2;
-        // this.planets.push(obj);
-        // this.stage.addChild(obj);
     }
 
-    fillRandom(min,max) {
-        for (let i = 0; i < random(min,max); i++) {
+    fillRandom(min, max) {
+        for (let i = 0; i < random(min, max); i++) {
             this.createPlanet(random(0, window.innerWidth), random(0, window.innerHeight), 1, 0, 0);
         }
 
@@ -190,22 +176,49 @@ function sortBy<T, Y>(array: T[], fn: (t: T) => Y) {
     });
 }
 
+class SolarSystem {
+    objects: Planet[] = [];
+    stage = new createjs.Stage("canvas");
+    relationships: PlanetRelationship[] = [];
+
+    createPlanet(x, y, mass, vx = 0, vy = 0) {
+        let p = new Planet(this.stage, x, y, mass, vx, vy);
+        this.objects.forEach(x=> {
+
+        });
+        this.objects.push(p);
+    }
+
+}
+
+
+class PlanetRelationship {
+    a: Planet;
+    b: Planet;
+
+    constructor(a: Planet, b: Planet) {
+        this.a = a;
+        this.b = b;
+    }
+}
+
 class Planet {
     shape: createjs.Shape = new createjs.Shape();
     mass: number;
     vX: number;
     vY: number;
-    a: number = 0;
     fX: number = 0;
     fY: number = 0;
+    x: number;
+    y: number;
 
     color: Color = new Color(randColor());
 
-    get w(): number {
+    get width(): number {
         return this.radius * 2;
     }
 
-    get h(): number {
+    get height(): number {
         return this.radius * 2;
     }
 
@@ -221,7 +234,8 @@ class Planet {
         obj.y = y;
         p.mass = mass;
 
-
+        this.x = x;
+        this.y = y;
         p.vX = vx;
         p.vY = vy;
         //p.w = p.h = mass * 2;
@@ -230,13 +244,10 @@ class Planet {
             this.color = this.color.lightenByAmount(1);
         }
 
-        this.update();
+        this.updateShapeGraphics();
     }
 
-    update() {
-        let obj = this.shape;
-        obj.graphics.f(this.color.toCSS()).dc(0, 0, this.radius);//"#08F"
-    }
+
 
     tick() {
         let t = this;
@@ -245,10 +256,25 @@ class Planet {
         t.vY += t.fY / t.mass;
 
 
-        t.shape.x += t.vX / speedModifier;
-        t.shape.y += t.vY / speedModifier;
+        t.x += t.vX / speedModifier;
+        t.y += t.vY / speedModifier;
+
+        this.updateShape();
 
         t.fX = t.fY = 0;
+    }
+
+    updateShape() {
+        this.shape.x = this.x;
+        this.shape.y = this.y;
+    }
+
+    updateShapeGraphics() {
+        let obj = this.shape;
+        obj.graphics
+        // .f(this.color.toCSS())
+            .beginFill(this.color.toCSS())
+            .drawCircle(0, 0, this.radius);//"#08F"
     }
 }
 
