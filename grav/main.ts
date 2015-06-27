@@ -2,48 +2,11 @@
 /// <reference path="./typings/easeljs/easeljs.d.ts"/>
 /// <reference path="./scripts/color.d.ts"/>
 
+/// <reference path="./util"/>
+/// <reference path="./planet"/>
 
-const speedModifier = 5;//25
+const speedModifier = 1;//25
 
-
-function random(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function randColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-}
-
-function circleArea(r) {
-    return Math.PI * r * r;
-}
-
-function circlueRad(a) {
-    return Math.sqrt(a / Math.PI);
-}
-
-function findAllPossibleCombos<T>(a: T[], min: number, max: number = null): T[][] {
-    if (max === null) max = a.length;
-    max += 1;
-    var fn = function(n, src, got, all) {
-        if (n == 0) {
-            if (got.length > 0) {
-                all[all.length] = got;
-            }
-            return;
-        }
-        for (var j = 0; j < src.length; j++) {
-            fn(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
-        }
-        return;
-    }
-    var all = [];
-    for (var i = min; i < max; i++) {
-        fn(i, a, [], all);
-    }
-    //all.push(a);
-    return all;
-}
 
 class Page {
     system = new SolarSystem();
@@ -79,13 +42,17 @@ class Page {
 
             if (this.tickCount % 60) {
                 this.system.cleanup();
+                this.updateFps();
             }
 
         });
         createjs.Ticker.setFPS(60);
 
-        this.fillRandom(10, 15);
+        this.fillRandom(50, 100);
         this.fillWindow();
+
+        this.createPlanet(this.canvas.width /2, this.canvas.height /2, 50);
+
     }
 
 
@@ -103,7 +70,10 @@ class Page {
         for (let i = 0; i < random(min, max); i++) {
             this.createPlanet(random(0, window.innerWidth), random(0, window.innerHeight), 1, 0, 0);
         }
+    }
 
+    updateFps(){
+        this.fpsCounter.innerText = Math.round( createjs.Ticker.getMeasuredFPS()).toString();
     }
 }
 
@@ -208,7 +178,7 @@ class PlanetRelationship {
         var dist = Math.sqrt(distSquareAb);
         dist = dist / 2;
 
-        if (dist > a.width / 2 + b.width / 2) {
+        if (dist > a.radius + b.radius) {
             var totalForce = (a.mass * b.mass) / distSquareAb;
             a.fX += totalForce * diffXab / dist;
             a.fY += totalForce * diffYab / dist;
@@ -238,95 +208,6 @@ class PlanetRelationship {
 
 }
 
-class Planet {
-    static totalIdx = 0;
-    id = Planet.totalIdx++;
-
-
-    shape: createjs.Shape = new createjs.Shape();
-    mass: number;
-    vX: number;
-    vY: number;
-    fX: number = 0;
-    fY: number = 0;
-    x: number;
-    y: number;
-
-    isDestroyed: boolean = false;
-
-    color: Color = new Color(randColor());
-
-    get width(): number {
-        return this.radius * 2;
-    }
-
-    get height(): number {
-        return this.radius * 2;
-    }
-
-    get radius() {
-        return circlueRad(this.mass * 4);
-    }
-
-    constructor(private system: SolarSystem, x, y, mass, vx = 0, vy = 0) {
-        system.stage.addChild(this.shape);
-        let p = this;
-        let obj = this.shape;
-        obj.regX = obj.regY = -mass;
-        obj.x = x;
-        obj.y = y;
-        p.mass = mass;
-
-        this.x = x;
-        this.y = y;
-        p.vX = vx;
-        p.vY = vy;
-        //p.w = p.h = mass * 2;
-
-        if (this.color.getLightness() < .3) {
-            this.color = this.color.lightenByAmount(1);
-        }
-
-        this.updateShapeGraphics();
-    }
-
-
-
-    tick() {
-        let t = this;
-
-        t.vX += t.fX / t.mass;
-        t.vY += t.fY / t.mass;
-
-
-        t.x += t.vX / speedModifier;
-        t.y += t.vY / speedModifier;
-
-        this.updateShape();
-
-        t.fX = t.fY = 0;
-    }
-
-    updateShape() {
-        this.shape.x = this.x;
-        this.shape.y = this.y;
-    }
-
-    updateShapeGraphics() {
-        let obj = this.shape;
-        obj.graphics
-        // .f(this.color.toCSS())
-            .beginFill(this.color.toCSS())
-            .drawCircle(0, 0, this.radius);//"#08F"
-    }
-
-    destroy() {
-        console.log('destroy', this.id);
-        this.isDestroyed = true;
-        this.mass = 0;
-        this.system.stage.removeChild(this.shape);
-    }
-}
 
 
 var page = new Page();

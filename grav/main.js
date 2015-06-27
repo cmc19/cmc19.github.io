@@ -1,42 +1,9 @@
 /// <reference path="./typings/jquery/jquery.d.ts"/>
 /// <reference path="./typings/easeljs/easeljs.d.ts"/>
 /// <reference path="./scripts/color.d.ts"/>
-var speedModifier = 5;
-function random(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-function randColor() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-}
-function circleArea(r) {
-    return Math.PI * r * r;
-}
-function circlueRad(a) {
-    return Math.sqrt(a / Math.PI);
-}
-function findAllPossibleCombos(a, min, max) {
-    if (max === void 0) { max = null; }
-    if (max === null)
-        max = a.length;
-    max += 1;
-    var fn = function (n, src, got, all) {
-        if (n == 0) {
-            if (got.length > 0) {
-                all[all.length] = got;
-            }
-            return;
-        }
-        for (var j = 0; j < src.length; j++) {
-            fn(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
-        }
-        return;
-    };
-    var all = [];
-    for (var i = min; i < max; i++) {
-        fn(i, a, [], all);
-    }
-    return all;
-}
+/// <reference path="./util"/>
+/// <reference path="./planet"/>
+var speedModifier = 1;
 var Page = (function () {
     function Page() {
         this.system = new SolarSystem();
@@ -73,11 +40,13 @@ var Page = (function () {
             _this.system.tick();
             if (_this.tickCount % 60) {
                 _this.system.cleanup();
+                _this.updateFps();
             }
         });
         createjs.Ticker.setFPS(60);
-        this.fillRandom(10, 15);
+        this.fillRandom(50, 100);
         this.fillWindow();
+        this.createPlanet(this.canvas.width / 2, this.canvas.height / 2, 50);
     };
     Page.prototype.createPlanet = function (x, y, mass, vx, vy) {
         if (vx === void 0) { vx = 0; }
@@ -88,6 +57,9 @@ var Page = (function () {
         for (var i = 0; i < random(min, max); i++) {
             this.createPlanet(random(0, window.innerWidth), random(0, window.innerHeight), 1, 0, 0);
         }
+    };
+    Page.prototype.updateFps = function () {
+        this.fpsCounter.innerText = Math.round(createjs.Ticker.getMeasuredFPS()).toString();
     };
     return Page;
 })();
@@ -185,7 +157,7 @@ var PlanetRelationship = (function () {
         var distSquareAb = diffXab * diffXab + diffYab * diffYab;
         var dist = Math.sqrt(distSquareAb);
         dist = dist / 2;
-        if (dist > a.width / 2 + b.width / 2) {
+        if (dist > a.radius + b.radius) {
             var totalForce = (a.mass * b.mass) / distSquareAb;
             a.fX += totalForce * diffXab / dist;
             a.fY += totalForce * diffYab / dist;
@@ -205,82 +177,6 @@ var PlanetRelationship = (function () {
     };
     PlanetRelationship.totalIdx = 0;
     return PlanetRelationship;
-})();
-var Planet = (function () {
-    function Planet(system, x, y, mass, vx, vy) {
-        if (vx === void 0) { vx = 0; }
-        if (vy === void 0) { vy = 0; }
-        this.system = system;
-        this.id = Planet.totalIdx++;
-        this.shape = new createjs.Shape();
-        this.fX = 0;
-        this.fY = 0;
-        this.isDestroyed = false;
-        this.color = new Color(randColor());
-        system.stage.addChild(this.shape);
-        var p = this;
-        var obj = this.shape;
-        obj.regX = obj.regY = -mass;
-        obj.x = x;
-        obj.y = y;
-        p.mass = mass;
-        this.x = x;
-        this.y = y;
-        p.vX = vx;
-        p.vY = vy;
-        if (this.color.getLightness() < .3) {
-            this.color = this.color.lightenByAmount(1);
-        }
-        this.updateShapeGraphics();
-    }
-    Object.defineProperty(Planet.prototype, "width", {
-        get: function () {
-            return this.radius * 2;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Planet.prototype, "height", {
-        get: function () {
-            return this.radius * 2;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Planet.prototype, "radius", {
-        get: function () {
-            return circlueRad(this.mass * 4);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Planet.prototype.tick = function () {
-        var t = this;
-        t.vX += t.fX / t.mass;
-        t.vY += t.fY / t.mass;
-        t.x += t.vX / speedModifier;
-        t.y += t.vY / speedModifier;
-        this.updateShape();
-        t.fX = t.fY = 0;
-    };
-    Planet.prototype.updateShape = function () {
-        this.shape.x = this.x;
-        this.shape.y = this.y;
-    };
-    Planet.prototype.updateShapeGraphics = function () {
-        var obj = this.shape;
-        obj.graphics
-            .beginFill(this.color.toCSS())
-            .drawCircle(0, 0, this.radius);
-    };
-    Planet.prototype.destroy = function () {
-        console.log('destroy', this.id);
-        this.isDestroyed = true;
-        this.mass = 0;
-        this.system.stage.removeChild(this.shape);
-    };
-    Planet.totalIdx = 0;
-    return Planet;
 })();
 var page = new Page();
 $(document).ready(function () { return page.init(); });

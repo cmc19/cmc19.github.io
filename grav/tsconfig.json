@@ -17,10 +17,12 @@
     ],
     "files": [
         "./main.ts",
+        "./planet.ts",
         "./scripts/color.d.ts",
         "./typings/createjs-lib/createjs-lib.d.ts",
         "./typings/easeljs/easeljs.d.ts",
         "./typings/jquery/jquery.d.ts",
-        "./typings/tweenjs/tweenjs.d.ts"
+        "./typings/tweenjs/tweenjs.d.ts",
+        "./util.ts"
     ]
 }
