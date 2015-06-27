@@ -3,7 +3,7 @@
 /// <reference path="./scripts/color.d.ts"/>
 /// <reference path="./util"/>
 /// <reference path="./planet"/>
-var speedModifier = 1;
+var speedModifier = 25;
 var Page = (function () {
     function Page() {
         this.system = new SolarSystem();
@@ -43,10 +43,12 @@ var Page = (function () {
                 _this.updateFps();
             }
         });
-        createjs.Ticker.setFPS(60);
-        this.fillRandom(50, 100);
+        createjs.Ticker.setFPS(10);
         this.fillWindow();
-        this.createPlanet(this.canvas.width / 2, this.canvas.height / 2, 50);
+        this.fillRandom(50, 100);
+        for (var i = 0; i < 50; i++) {
+            this.createPlanet(this.canvas.width / 2, this.canvas.height / 2, 1);
+        }
     };
     Page.prototype.createPlanet = function (x, y, mass, vx, vy) {
         if (vx === void 0) { vx = 0; }
@@ -159,7 +161,7 @@ var PlanetRelationship = (function () {
         dist = dist / 2;
         if (dist > a.radius + b.radius) {
             var totalForce = (a.mass * b.mass) / distSquareAb;
-            a.fX += totalForce * diffXab / dist;
+            a.fX += (totalForce * diffXab) / dist;
             a.fY += totalForce * diffYab / dist;
         }
         else {

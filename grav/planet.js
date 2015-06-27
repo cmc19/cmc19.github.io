@@ -10,6 +10,10 @@ var Planet = (function () {
         this.fY = 0;
         this.isDestroyed = false;
         this.color = new Color(randColor());
+        if (this.color.getLightness() < .3) {
+            this.color = this.color.lightenByAmount(1);
+        }
+        this.shape.graphics.drawCircle(0, 0, 0).setStrokeStyle(1).beginStroke('white').beginFill(this.color.toCSS());
         system.stage.addChild(this.shape);
         var p = this;
         var obj = this.shape;
@@ -21,9 +25,6 @@ var Planet = (function () {
         this.y = y;
         p.vX = vx;
         p.vY = vy;
-        if (this.color.getLightness() < .3) {
-            this.color = this.color.lightenByAmount(1);
-        }
         this.updateShapeGraphics();
     }
     Object.defineProperty(Planet.prototype, "width", {
@@ -62,7 +63,8 @@ var Planet = (function () {
     };
     Planet.prototype.updateShapeGraphics = function () {
         var obj = this.shape;
-        obj.graphics
+        obj.graphics.clear();
+        var g = obj.graphics
             .beginFill(this.color.toCSS())
             .drawCircle(0, 0, this.radius);
     };

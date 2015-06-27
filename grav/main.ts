@@ -5,7 +5,7 @@
 /// <reference path="./util"/>
 /// <reference path="./planet"/>
 
-const speedModifier = 1;//25
+const speedModifier = 25;//25
 
 
 class Page {
@@ -46,12 +46,14 @@ class Page {
             }
 
         });
-        createjs.Ticker.setFPS(60);
-
-        this.fillRandom(50, 100);
+        createjs.Ticker.setFPS(10);
         this.fillWindow();
 
-        this.createPlanet(this.canvas.width /2, this.canvas.height /2, 50);
+        this.fillRandom(50, 100);
+
+for (let i = 0; i < 50; i++) {
+        this.createPlanet(this.canvas.width /2, this.canvas.height /2, 1);
+}
 
     }
 
@@ -180,7 +182,7 @@ class PlanetRelationship {
 
         if (dist > a.radius + b.radius) {
             var totalForce = (a.mass * b.mass) / distSquareAb;
-            a.fX += totalForce * diffXab / dist;
+            a.fX += (totalForce * diffXab) / dist;
             a.fY += totalForce * diffYab / dist;
 
         } else {

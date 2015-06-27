@@ -31,6 +31,10 @@ class Planet {
     }
 
     constructor(private system: SolarSystem, x, y, mass, vx = 0, vy = 0) {
+        if (this.color.getLightness() < .3) {
+            this.color = this.color.lightenByAmount(1);
+        }
+        this.shape.graphics.drawCircle(0,0,0).setStrokeStyle(1).beginStroke('white')            .beginFill(this.color.toCSS());
         system.stage.addChild(this.shape);
         let p = this;
         let obj = this.shape;
@@ -45,9 +49,7 @@ class Planet {
         p.vY = vy;
         //p.w = p.h = mass * 2;
 
-        if (this.color.getLightness() < .3) {
-            this.color = this.color.lightenByAmount(1);
-        }
+
 
         this.updateShapeGraphics();
     }
@@ -76,9 +78,10 @@ class Planet {
 
     updateShapeGraphics() {
         let obj = this.shape;
-        obj.graphics
+        obj.graphics.clear();
+    let g =     obj.graphics
         // .f(this.color.toCSS())
-            .beginFill(this.color.toCSS())
+  .beginFill(this.color.toCSS())
             .drawCircle(0, 0, this.radius);//"#08F"
     }
 
