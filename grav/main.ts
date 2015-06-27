@@ -46,12 +46,13 @@ function findAllPossibleCombos<T>(a: T[], min: number, max: number = null): T[][
 }
 
 class Page {
-    stage = new createjs.Stage("canvas");
+    system = new SolarSystem();
+
     mouse = { startX: 0, startY: 0 };
     // planets: createjs.Shape[] = [];
     planets: Planet[] = [];
     get canvas(): HTMLCanvasElement {
-        return <HTMLCanvasElement> this.stage.canvas;
+        return <HTMLCanvasElement> this.system.stage.canvas;
     }
 
     fillWindow() {
@@ -60,11 +61,11 @@ class Page {
     }
 
     init() {
-        let stage = this.stage;
+        let stage = this.system.stage;
         $(window).on('resize', () => this.fillWindow());
 
         stage.on("stagemousedown", (e: createjs.MouseEvent) => {
-            console.log('stagemousedown', e);
+            // console.log('stagemousedown', e);
             this.mouse.startX = e.stageX;
             this.mouse.startY = e.stageY;
         });
@@ -72,94 +73,22 @@ class Page {
             this.createPlanet(this.mouse.startX - 5, this.mouse.startY - 5, random(2, 5), e.stageX - this.mouse.startX, e.stageY - this.mouse.startY);
         });
 
-        createjs.Ticker.on("tick", () => this.tick());
+        createjs.Ticker.on("tick", () => this.system.tick());
         createjs.Ticker.setFPS(60);
 
-        this.fillRandom(200, 400);
+        this.fillRandom(10, 15);
         this.fillWindow();
     }
 
-    tickCount = 0;
-    tick() {
-        this.tickCount++;
-        let allObjs = this.planets;
-        let stage = this.stage;
-        let ignore = [];
 
-
-
-        let combos = findAllPossibleCombos(allObjs, 2, 2);
-
-        combos.forEach(comb=> {
-            comb = sortBy(comb, x=> x.mass).reverse();
-            function apply(a: Planet, b: Planet) {
-
-                let diffXab = b.shape.x - a.shape.x;
-                let diffYab = b.shape.y - a.shape.y;
-                var distSquareAb = diffXab * diffXab + diffYab * diffYab;
-                var dist = Math.sqrt(distSquareAb);
-                dist = dist / 2;
-
-                if (dist > a.width / 2 + b.width / 2) {
-                    var totalForce = (a.mass * b.mass) / distSquareAb;
-                    a.fX += totalForce * diffXab / dist;
-                    a.fY += totalForce * diffYab / dist;
-
-                } else {
-                    //colided
-                    // todo  this needs to be expanded on
-                    a.fX += b.vX / b.mass;
-                    a.fY += b.vY / b.mass;
-
-                    // var tempX = (a.vX + b.vX) / 2;
-                    // var tempY = (a.vY + b.vY) / 2;
-                    // a.vX = tempX; b.vX = tempX;
-                    // a.vY = tempY; b.vY = tempY;
-
-                    a.mass += b.mass;
-                    a.updateShapeGraphics();
-
-                    stage.removeChild(b.shape);
-                    ignore.push(b);
-                    b['ignore'] = true;
-                }
-            }
-
-            apply(comb[0], comb[1]);
-            if (comb[1]['ignore'] == undefined) {
-                apply(comb[1], comb[0]);
-            }
-
-        });
-
-        allObjs.forEach(x=> x.tick());
-        // allObjs.forEach(function(obj1) {
-        //
-        //      obj1.shape.x += obj1.vX / 25;
-        //      obj1.shape.y += obj1.vY / 25;
-        // });
-
-        this.planets = this.planets.filter(x=> x['ignore'] === undefined);
-        this.stage.update();
-
-        if (this.tickCount % 60 == 0) {
-            this.bodyCount.innerText = this.planets.length.toString();
-            let mass = 0;
-            this.planets.forEach(x=> mass += x.mass);
-            this.mass.innerText = mass.toString();
-
-            this.fpsCounter.innerText = createjs.Ticker.getMeasuredFPS().toString();
-        }
-    }
 
     bodyCount: HTMLSpanElement = document.getElementById('bodyCount');
     mass: HTMLSpanElement = document.getElementById('mass');
     fpsCounter: HTMLSpanElement = document.getElementById('fps');
-    createPlanet(x, y, mass, vx = 0, vy = 0) {
-        let p = new Planet(this.stage, x, y, mass, vx, vy);
 
-        this.planets.push(p);
-        this.stage.addChild(p.shape);
+
+    createPlanet(x, y, mass, vx = 0, vy = 0) {
+        this.system.createPlanet(x, y, mass, vx, vy);
     }
 
     fillRandom(min, max) {
@@ -182,27 +111,125 @@ class SolarSystem {
     relationships: PlanetRelationship[] = [];
 
     createPlanet(x, y, mass, vx = 0, vy = 0) {
-        let p = new Planet(this.stage, x, y, mass, vx, vy);
-        this.objects.forEach(x=> {
-
+        let p = new Planet(this, x, y, mass, vx, vy);
+        this.objects.forEach(p2=> {
+            this.relationships.push(new PlanetRelationship(p2, p));
         });
         this.objects.push(p);
     }
 
+    tickCount = 0;
+    tick() {
+        // console.log('system.tick ' + this.tickCount);
+        this.tickCount++;
+        let allObjs = this.objects;
+        let stage = this.stage;
+        let ignore = [];
+
+
+        this.relationships.filter(x=>x.isDestroyed == false).forEach(c => {
+            c.tick();
+        });
+
+        allObjs.forEach(x=> x.tick());
+        // allObjs.forEach(function(obj1) {
+        //
+        //      obj1.shape.x += obj1.vX / 25;
+        //      obj1.shape.y += obj1.vY / 25;
+        // });
+
+        this.objects = this.objects.filter(x=> x['ignore'] === undefined);
+        this.stage.update();
+    }
 }
 
 
 class PlanetRelationship {
+    static totalIdx = 0;
+    id = PlanetRelationship.totalIdx++;
     a: Planet;
     b: Planet;
+
+    get isDestroyed(){
+        return this.a.isDestroyed || this.b.isDestroyed || this.a.id == this.b.id;
+    }
+
+    get largest(): Planet {
+        // console.log(` ${this.a.mass} > ${this.b.mass} = ${ this.a.mass > this.b.mass}`)
+        if (this.a.mass == this.b.mass) return this.a;
+        return this.a.mass < this.b.mass ? this.a : this.b;
+    }
+
+    get smallest(): Planet {
+        if (this.a.mass == this.b.mass) return this.b;
+        return this.b.mass < this.a.mass ? this.b : this.a;
+    }
 
     constructor(a: Planet, b: Planet) {
         this.a = a;
         this.b = b;
     }
+
+    tick() {
+        if (this.a.isDestroyed || this.b.isDestroyed) return;
+
+        let a = this.largest;
+        let b = this.smallest;
+        let r = PlanetRelationship.apply1(a, b);
+
+        if (r) {
+            let r2 = PlanetRelationship.apply1(b, a);
+            if(r2==false) console.log('error');
+        } else {
+            console.log(this.toString())
+        }
+    }
+
+
+
+    static apply1(a: Planet, b: Planet): boolean {
+
+        let diffXab = b.x - a.x;
+        let diffYab = b.y - a.y;
+        var distSquareAb = diffXab * diffXab + diffYab * diffYab;
+        var dist = Math.sqrt(distSquareAb);
+        dist = dist / 2;
+
+        if (dist > a.width / 2 + b.width / 2) {
+            var totalForce = (a.mass * b.mass) / distSquareAb;
+            a.fX += totalForce * diffXab / dist;
+            a.fY += totalForce * diffYab / dist;
+
+        } else {
+            //colided
+            // todo  this needs to be expanded on
+            a.fX += b.vX / b.mass;
+            a.fY += b.vY / b.mass;
+
+            // var tempX = (a.vX + b.vX) / 2;
+            // var tempY = (a.vY + b.vY) / 2;
+            // a.vX = tempX; b.vX = tempX;
+            // a.vY = tempY; b.vY = tempY;
+
+            a.mass += b.mass;
+            a.updateShapeGraphics();
+            b.destroy();
+            return false;
+        }
+        return true;
+    }
+
+    toString() {
+        return `PlanetRelationship: ${this.id}, A:${this.a.id}, B:${this.b.id}`;
+    }
+
 }
 
 class Planet {
+    static totalIdx = 0;
+    id = Planet.totalIdx++;
+
+
     shape: createjs.Shape = new createjs.Shape();
     mass: number;
     vX: number;
@@ -211,6 +238,8 @@ class Planet {
     fY: number = 0;
     x: number;
     y: number;
+
+    isDestroyed: boolean = false;
 
     color: Color = new Color(randColor());
 
@@ -226,7 +255,8 @@ class Planet {
         return circlueRad(this.mass * 4);
     }
 
-    constructor(stage: createjs.Stage, x, y, mass, vx = 0, vy = 0) {
+    constructor(private system: SolarSystem, x, y, mass, vx = 0, vy = 0) {
+        system.stage.addChild(this.shape);
         let p = this;
         let obj = this.shape;
         obj.regX = obj.regY = -mass;
@@ -275,6 +305,14 @@ class Planet {
         // .f(this.color.toCSS())
             .beginFill(this.color.toCSS())
             .drawCircle(0, 0, this.radius);//"#08F"
+    }
+
+    destroy() {
+        debugger;
+        console.log('destroy', this.id);
+        this.isDestroyed = true;
+        this.mass = 0;
+        this.system.stage.removeChild(this.shape);
     }
 }
 

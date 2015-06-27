@@ -39,17 +39,16 @@ function findAllPossibleCombos(a, min, max) {
 }
 var Page = (function () {
     function Page() {
-        this.stage = new createjs.Stage("canvas");
+        this.system = new SolarSystem();
         this.mouse = { startX: 0, startY: 0 };
         this.planets = [];
-        this.tickCount = 0;
         this.bodyCount = document.getElementById('bodyCount');
         this.mass = document.getElementById('mass');
         this.fpsCounter = document.getElementById('fps');
     }
     Object.defineProperty(Page.prototype, "canvas", {
         get: function () {
-            return this.stage.canvas;
+            return this.system.stage.canvas;
         },
         enumerable: true,
         configurable: true
@@ -60,72 +59,24 @@ var Page = (function () {
     };
     Page.prototype.init = function () {
         var _this = this;
-        var stage = this.stage;
+        var stage = this.system.stage;
         $(window).on('resize', function () { return _this.fillWindow(); });
         stage.on("stagemousedown", function (e) {
-            console.log('stagemousedown', e);
             _this.mouse.startX = e.stageX;
             _this.mouse.startY = e.stageY;
         });
         stage.on("stagemouseup", function (e) {
             _this.createPlanet(_this.mouse.startX - 5, _this.mouse.startY - 5, random(2, 5), e.stageX - _this.mouse.startX, e.stageY - _this.mouse.startY);
         });
-        createjs.Ticker.on("tick", function () { return _this.tick(); });
+        createjs.Ticker.on("tick", function () { return _this.system.tick(); });
         createjs.Ticker.setFPS(60);
-        this.fillRandom(200, 400);
+        this.fillRandom(10, 15);
         this.fillWindow();
-    };
-    Page.prototype.tick = function () {
-        this.tickCount++;
-        var allObjs = this.planets;
-        var stage = this.stage;
-        var ignore = [];
-        var combos = findAllPossibleCombos(allObjs, 2, 2);
-        combos.forEach(function (comb) {
-            comb = sortBy(comb, function (x) { return x.mass; }).reverse();
-            function apply(a, b) {
-                var diffXab = b.shape.x - a.shape.x;
-                var diffYab = b.shape.y - a.shape.y;
-                var distSquareAb = diffXab * diffXab + diffYab * diffYab;
-                var dist = Math.sqrt(distSquareAb);
-                dist = dist / 2;
-                if (dist > a.width / 2 + b.width / 2) {
-                    var totalForce = (a.mass * b.mass) / distSquareAb;
-                    a.fX += totalForce * diffXab / dist;
-                    a.fY += totalForce * diffYab / dist;
-                }
-                else {
-                    a.fX += b.vX / b.mass;
-                    a.fY += b.vY / b.mass;
-                    a.mass += b.mass;
-                    a.updateShapeGraphics();
-                    stage.removeChild(b.shape);
-                    ignore.push(b);
-                    b['ignore'] = true;
-                }
-            }
-            apply(comb[0], comb[1]);
-            if (comb[1]['ignore'] == undefined) {
-                apply(comb[1], comb[0]);
-            }
-        });
-        allObjs.forEach(function (x) { return x.tick(); });
-        this.planets = this.planets.filter(function (x) { return x['ignore'] === undefined; });
-        this.stage.update();
-        if (this.tickCount % 60 == 0) {
-            this.bodyCount.innerText = this.planets.length.toString();
-            var mass = 0;
-            this.planets.forEach(function (x) { return mass += x.mass; });
-            this.mass.innerText = mass.toString();
-            this.fpsCounter.innerText = createjs.Ticker.getMeasuredFPS().toString();
-        }
     };
     Page.prototype.createPlanet = function (x, y, mass, vx, vy) {
         if (vx === void 0) { vx = 0; }
         if (vy === void 0) { vy = 0; }
-        var p = new Planet(this.stage, x, y, mass, vx, vy);
-        this.planets.push(p);
-        this.stage.addChild(p.shape);
+        this.system.createPlanet(x, y, mass, vx, vy);
     };
     Page.prototype.fillRandom = function (min, max) {
         for (var i = 0; i < random(min, max); i++) {
@@ -144,32 +95,117 @@ var SolarSystem = (function () {
         this.objects = [];
         this.stage = new createjs.Stage("canvas");
         this.relationships = [];
+        this.tickCount = 0;
     }
     SolarSystem.prototype.createPlanet = function (x, y, mass, vx, vy) {
+        var _this = this;
         if (vx === void 0) { vx = 0; }
         if (vy === void 0) { vy = 0; }
-        var p = new Planet(this.stage, x, y, mass, vx, vy);
-        this.objects.forEach(function (x) {
+        var p = new Planet(this, x, y, mass, vx, vy);
+        this.objects.forEach(function (p2) {
+            _this.relationships.push(new PlanetRelationship(p2, p));
         });
         this.objects.push(p);
+    };
+    SolarSystem.prototype.tick = function () {
+        this.tickCount++;
+        var allObjs = this.objects;
+        var stage = this.stage;
+        var ignore = [];
+        this.relationships.filter(function (x) { return x.isDestroyed == false; }).forEach(function (c) {
+            c.tick();
+        });
+        allObjs.forEach(function (x) { return x.tick(); });
+        this.objects = this.objects.filter(function (x) { return x['ignore'] === undefined; });
+        this.stage.update();
     };
     return SolarSystem;
 })();
 var PlanetRelationship = (function () {
     function PlanetRelationship(a, b) {
+        this.id = PlanetRelationship.totalIdx++;
         this.a = a;
         this.b = b;
     }
+    Object.defineProperty(PlanetRelationship.prototype, "isDestroyed", {
+        get: function () {
+            return this.a.isDestroyed || this.b.isDestroyed || this.a.id == this.b.id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PlanetRelationship.prototype, "largest", {
+        get: function () {
+            if (this.a.mass == this.b.mass)
+                return this.a;
+            return this.a.mass < this.b.mass ? this.a : this.b;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PlanetRelationship.prototype, "smallest", {
+        get: function () {
+            if (this.a.mass == this.b.mass)
+                return this.b;
+            return this.b.mass < this.a.mass ? this.b : this.a;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    PlanetRelationship.prototype.tick = function () {
+        if (this.a.isDestroyed || this.b.isDestroyed)
+            return;
+        var a = this.largest;
+        var b = this.smallest;
+        var r = PlanetRelationship.apply1(a, b);
+        if (r) {
+            var r2 = PlanetRelationship.apply1(b, a);
+            if (r2 == false)
+                console.log('error');
+        }
+        else {
+            console.log(this.toString());
+        }
+    };
+    PlanetRelationship.apply1 = function (a, b) {
+        var diffXab = b.x - a.x;
+        var diffYab = b.y - a.y;
+        var distSquareAb = diffXab * diffXab + diffYab * diffYab;
+        var dist = Math.sqrt(distSquareAb);
+        dist = dist / 2;
+        if (dist > a.width / 2 + b.width / 2) {
+            var totalForce = (a.mass * b.mass) / distSquareAb;
+            a.fX += totalForce * diffXab / dist;
+            a.fY += totalForce * diffYab / dist;
+        }
+        else {
+            a.fX += b.vX / b.mass;
+            a.fY += b.vY / b.mass;
+            a.mass += b.mass;
+            a.updateShapeGraphics();
+            b.destroy();
+            return false;
+        }
+        return true;
+    };
+    PlanetRelationship.prototype.toString = function () {
+        return "PlanetRelationship: " + this.id + ", A:" + this.a.id + ", B:" + this.b.id;
+    };
+    PlanetRelationship.totalIdx = 0;
     return PlanetRelationship;
 })();
 var Planet = (function () {
-    function Planet(stage, x, y, mass, vx, vy) {
+    function Planet(system, x, y, mass, vx, vy) {
         if (vx === void 0) { vx = 0; }
         if (vy === void 0) { vy = 0; }
+        this.system = system;
+        this.id = Planet.totalIdx++;
         this.shape = new createjs.Shape();
         this.fX = 0;
         this.fY = 0;
+        this.isDestroyed = false;
         this.color = new Color(randColor());
+        system.stage.addChild(this.shape);
         var p = this;
         var obj = this.shape;
         obj.regX = obj.regY = -mass;
@@ -225,7 +261,16 @@ var Planet = (function () {
             .beginFill(this.color.toCSS())
             .drawCircle(0, 0, this.radius);
     };
+    Planet.prototype.destroy = function () {
+        debugger;
+        console.log('destroy', this.id);
+        this.isDestroyed = true;
+        this.mass = 0;
+        this.system.stage.removeChild(this.shape);
+    };
+    Planet.totalIdx = 0;
     return Planet;
 })();
 var page = new Page();
 $(document).ready(function () { return page.init(); });
+//# sourceMappingURL=main.js.map
