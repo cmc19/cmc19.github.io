@@ -47,10 +47,10 @@ function findAllPossibleCombos<T>(a: T[], min: number, max: number = null): T[][
 
 class Page {
     system = new SolarSystem();
+    tickCount = 0;
 
     mouse = { startX: 0, startY: 0 };
-    // planets: createjs.Shape[] = [];
-    planets: Planet[] = [];
+
     get canvas(): HTMLCanvasElement {
         return <HTMLCanvasElement> this.system.stage.canvas;
     }
@@ -65,7 +65,6 @@ class Page {
         $(window).on('resize', () => this.fillWindow());
 
         stage.on("stagemousedown", (e: createjs.MouseEvent) => {
-            // console.log('stagemousedown', e);
             this.mouse.startX = e.stageX;
             this.mouse.startY = e.stageY;
         });
@@ -73,7 +72,16 @@ class Page {
             this.createPlanet(this.mouse.startX - 5, this.mouse.startY - 5, random(2, 5), e.stageX - this.mouse.startX, e.stageY - this.mouse.startY);
         });
 
-        createjs.Ticker.on("tick", () => this.system.tick());
+        createjs.Ticker.on("tick", () => {
+            this.tickCount++;
+
+            this.system.tick();
+
+            if (this.tickCount % 60) {
+                this.system.cleanup();
+            }
+
+        });
         createjs.Ticker.setFPS(60);
 
         this.fillRandom(10, 15);
@@ -118,29 +126,30 @@ class SolarSystem {
         this.objects.push(p);
     }
 
-    tickCount = 0;
     tick() {
-        // console.log('system.tick ' + this.tickCount);
-        this.tickCount++;
         let allObjs = this.objects;
         let stage = this.stage;
         let ignore = [];
 
 
-        this.relationships.filter(x=>x.isDestroyed == false).forEach(c => {
+        this.relationships.filter(x=> x.isDestroyed == false).forEach(c => {
             c.tick();
         });
 
         allObjs.forEach(x=> x.tick());
-        // allObjs.forEach(function(obj1) {
-        //
-        //      obj1.shape.x += obj1.vX / 25;
-        //      obj1.shape.y += obj1.vY / 25;
-        // });
 
         this.objects = this.objects.filter(x=> x['ignore'] === undefined);
         this.stage.update();
+
+
+
     }
+
+    cleanup() {
+        this.objects = this.objects.filter(x=> x.isDestroyed == false);
+        this.relationships = this.relationships.filter(x=> x.isDestroyed == false);
+    }
+
 }
 
 
@@ -150,19 +159,23 @@ class PlanetRelationship {
     a: Planet;
     b: Planet;
 
-    get isDestroyed(){
+    get isDestroyed() {
         return this.a.isDestroyed || this.b.isDestroyed || this.a.id == this.b.id;
     }
 
     get largest(): Planet {
         // console.log(` ${this.a.mass} > ${this.b.mass} = ${ this.a.mass > this.b.mass}`)
-        if (this.a.mass == this.b.mass) return this.a;
-        return this.a.mass < this.b.mass ? this.a : this.b;
+        let a = this.a;
+        let b = this.b;
+        if (a.mass == b.mass) return a;
+        return a.mass > b.mass ? a : b;
     }
 
     get smallest(): Planet {
-        if (this.a.mass == this.b.mass) return this.b;
-        return this.b.mass < this.a.mass ? this.b : this.a;
+        let a = this.a;
+        let b = this.b;
+        if (a.mass == b.mass) return b;
+        return b.mass > a.mass ? a : b;
     }
 
     constructor(a: Planet, b: Planet) {
@@ -179,7 +192,7 @@ class PlanetRelationship {
 
         if (r) {
             let r2 = PlanetRelationship.apply1(b, a);
-            if(r2==false) console.log('error');
+            if (r2 == false) console.log('error');
         } else {
             console.log(this.toString())
         }
@@ -308,7 +321,6 @@ class Planet {
     }
 
     destroy() {
-        debugger;
         console.log('destroy', this.id);
         this.isDestroyed = true;
         this.mass = 0;

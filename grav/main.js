@@ -40,8 +40,8 @@ function findAllPossibleCombos(a, min, max) {
 var Page = (function () {
     function Page() {
         this.system = new SolarSystem();
+        this.tickCount = 0;
         this.mouse = { startX: 0, startY: 0 };
-        this.planets = [];
         this.bodyCount = document.getElementById('bodyCount');
         this.mass = document.getElementById('mass');
         this.fpsCounter = document.getElementById('fps');
@@ -68,7 +68,13 @@ var Page = (function () {
         stage.on("stagemouseup", function (e) {
             _this.createPlanet(_this.mouse.startX - 5, _this.mouse.startY - 5, random(2, 5), e.stageX - _this.mouse.startX, e.stageY - _this.mouse.startY);
         });
-        createjs.Ticker.on("tick", function () { return _this.system.tick(); });
+        createjs.Ticker.on("tick", function () {
+            _this.tickCount++;
+            _this.system.tick();
+            if (_this.tickCount % 60) {
+                _this.system.cleanup();
+            }
+        });
         createjs.Ticker.setFPS(60);
         this.fillRandom(10, 15);
         this.fillWindow();
@@ -95,7 +101,6 @@ var SolarSystem = (function () {
         this.objects = [];
         this.stage = new createjs.Stage("canvas");
         this.relationships = [];
-        this.tickCount = 0;
     }
     SolarSystem.prototype.createPlanet = function (x, y, mass, vx, vy) {
         var _this = this;
@@ -108,7 +113,6 @@ var SolarSystem = (function () {
         this.objects.push(p);
     };
     SolarSystem.prototype.tick = function () {
-        this.tickCount++;
         var allObjs = this.objects;
         var stage = this.stage;
         var ignore = [];
@@ -118,6 +122,10 @@ var SolarSystem = (function () {
         allObjs.forEach(function (x) { return x.tick(); });
         this.objects = this.objects.filter(function (x) { return x['ignore'] === undefined; });
         this.stage.update();
+    };
+    SolarSystem.prototype.cleanup = function () {
+        this.objects = this.objects.filter(function (x) { return x.isDestroyed == false; });
+        this.relationships = this.relationships.filter(function (x) { return x.isDestroyed == false; });
     };
     return SolarSystem;
 })();
@@ -136,18 +144,22 @@ var PlanetRelationship = (function () {
     });
     Object.defineProperty(PlanetRelationship.prototype, "largest", {
         get: function () {
-            if (this.a.mass == this.b.mass)
-                return this.a;
-            return this.a.mass < this.b.mass ? this.a : this.b;
+            var a = this.a;
+            var b = this.b;
+            if (a.mass == b.mass)
+                return a;
+            return a.mass > b.mass ? a : b;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(PlanetRelationship.prototype, "smallest", {
         get: function () {
-            if (this.a.mass == this.b.mass)
-                return this.b;
-            return this.b.mass < this.a.mass ? this.b : this.a;
+            var a = this.a;
+            var b = this.b;
+            if (a.mass == b.mass)
+                return b;
+            return b.mass > a.mass ? a : b;
         },
         enumerable: true,
         configurable: true
@@ -262,7 +274,6 @@ var Planet = (function () {
             .drawCircle(0, 0, this.radius);
     };
     Planet.prototype.destroy = function () {
-        debugger;
         console.log('destroy', this.id);
         this.isDestroyed = true;
         this.mass = 0;
