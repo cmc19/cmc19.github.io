@@ -33,22 +33,29 @@ class Page {
             this.mouse.startY = e.stageY;
         });
         stage.on("stagemouseup", (e: createjs.MouseEvent) => {
-            console.log(e.nativeEvent.button);
             if (e.nativeEvent.button == 2) {
                 e.preventDefault();
                 e.nativeEvent.preventDefault();
                 e.nativeEvent.cancelBubble = true;
             }
             if (e.nativeEvent.button == 1) {
-                console.log(e.nativeEvent);
-                this.system.offset.x += e.stageX - this.mouse.startX - 5;
-                this.system.offset.y += e.stageY - this.mouse.startY;
+                this.system.offset.x += (e.stageX - this.mouse.startX)* this.system.zoom;
+                this.system.offset.y += (e.stageY - this.mouse.startY) * this.system.zoom;
             }
             else {
                 this.createPlanet((this.mouse.startX - this.system.offset.x) - 5, (this.mouse.startY - this.system.offset.y) - 5, random(2, 5), e.stageX - this.mouse.startX, e.stageY - this.mouse.startY);
             }
             //
         });
+this.canvas.addEventListener('mousewheel',x=>{
+    console.log('mousewheel',x);
+    if( x.wheelDelta <= -1){
+        this.system.zoom++;
+    }else if (x.wheelDelta >= 1){
+        if(this.system.zoom == 1) return;
+        this.system.zoom--;
+    }
+})
 
         createjs.Ticker.on("tick", () => {
             this.tickCount++;
@@ -115,6 +122,7 @@ function sortBy<T, Y>(array: T[], fn: (t: T) => Y) {
 class SolarSystem {
 
     offset = { x: 0, y: 0 };
+    zoom:number = 1;
 
     objects: Planet[] = [];
     stage = new createjs.Stage("canvas");

@@ -35,19 +35,28 @@ var Page = (function () {
             _this.mouse.startY = e.stageY;
         });
         stage.on("stagemouseup", function (e) {
-            console.log(e.nativeEvent.button);
             if (e.nativeEvent.button == 2) {
                 e.preventDefault();
                 e.nativeEvent.preventDefault();
                 e.nativeEvent.cancelBubble = true;
             }
             if (e.nativeEvent.button == 1) {
-                console.log(e.nativeEvent);
-                _this.system.offset.x += e.stageX - _this.mouse.startX - 5;
-                _this.system.offset.y += e.stageY - _this.mouse.startY;
+                _this.system.offset.x += (e.stageX - _this.mouse.startX) * _this.system.zoom;
+                _this.system.offset.y += (e.stageY - _this.mouse.startY) * _this.system.zoom;
             }
             else {
                 _this.createPlanet((_this.mouse.startX - _this.system.offset.x) - 5, (_this.mouse.startY - _this.system.offset.y) - 5, random(2, 5), e.stageX - _this.mouse.startX, e.stageY - _this.mouse.startY);
+            }
+        });
+        this.canvas.addEventListener('mousewheel', function (x) {
+            console.log('mousewheel', x);
+            if (x.wheelDelta <= -1) {
+                _this.system.zoom++;
+            }
+            else if (x.wheelDelta >= 1) {
+                if (_this.system.zoom == 1)
+                    return;
+                _this.system.zoom--;
             }
         });
         createjs.Ticker.on("tick", function () {
@@ -99,6 +108,7 @@ function sortBy(array, fn) {
 var SolarSystem = (function () {
     function SolarSystem() {
         this.offset = { x: 0, y: 0 };
+        this.zoom = 1;
         this.objects = [];
         this.stage = new createjs.Stage("canvas");
         this.relationships = [];

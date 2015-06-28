@@ -72,8 +72,8 @@ class Planet {
     }
 
     updateShape() {
-        this.shape.x = this.x + this.system.offset.x;
-        this.shape.y = this.y + this.system.offset.y;
+        this.shape.x = (this.x + this.system.offset.x) / this.system.zoom;
+        this.shape.y = (this.y + this.system.offset.y) / this.system.zoom;;
     }
 
     updateShapeGraphics() {
