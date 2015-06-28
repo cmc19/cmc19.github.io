@@ -58,8 +58,8 @@ var Planet = (function () {
         t.fX = t.fY = 0;
     };
     Planet.prototype.updateShape = function () {
-        this.shape.x = this.x;
-        this.shape.y = this.y;
+        this.shape.x = this.x + this.system.offset.x;
+        this.shape.y = this.y + this.system.offset.y;
     };
     Planet.prototype.updateShapeGraphics = function () {
         var obj = this.shape;
@@ -69,7 +69,6 @@ var Planet = (function () {
             .drawCircle(0, 0, this.radius);
     };
     Planet.prototype.destroy = function () {
-        console.log('destroy', this.id);
         this.isDestroyed = true;
         this.mass = 0;
         this.system.stage.removeChild(this.shape);

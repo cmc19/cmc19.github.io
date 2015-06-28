@@ -3,7 +3,7 @@
 /// <reference path="./scripts/color.d.ts"/>
 /// <reference path="./util"/>
 /// <reference path="./planet"/>
-var speedModifier = 25;
+var speedModifier = 4;
 var Page = (function () {
     function Page() {
         this.system = new SolarSystem();
@@ -33,7 +33,20 @@ var Page = (function () {
             _this.mouse.startY = e.stageY;
         });
         stage.on("stagemouseup", function (e) {
-            _this.createPlanet(_this.mouse.startX - 5, _this.mouse.startY - 5, random(2, 5), e.stageX - _this.mouse.startX, e.stageY - _this.mouse.startY);
+            console.log(e.nativeEvent.button);
+            if (e.nativeEvent.button == 2) {
+                e.preventDefault();
+                e.nativeEvent.preventDefault();
+                e.nativeEvent.cancelBubble = true;
+            }
+            if (e.nativeEvent.button == 1) {
+                console.log(e.nativeEvent);
+                _this.system.offset.x += e.stageX - _this.mouse.startX - 5;
+                _this.system.offset.y += e.stageY - _this.mouse.startY;
+            }
+            else {
+                _this.createPlanet((_this.mouse.startX - _this.system.offset.x) - 5, (_this.mouse.startY - _this.system.offset.y) - 5, random(2, 5), e.stageX - _this.mouse.startX, e.stageY - _this.mouse.startY);
+            }
         });
         createjs.Ticker.on("tick", function () {
             _this.tickCount++;
@@ -41,11 +54,12 @@ var Page = (function () {
             if (_this.tickCount % 60) {
                 _this.system.cleanup();
                 _this.updateFps();
+                _this.updateMass();
             }
         });
-        createjs.Ticker.setFPS(10);
+        createjs.Ticker.setFPS(60);
         this.fillWindow();
-        this.fillRandom(50, 100);
+        this.fillRandom(1000, 1200);
         for (var i = 0; i < 50; i++) {
             this.createPlanet(this.canvas.width / 2, this.canvas.height / 2, 1);
         }
@@ -57,11 +71,16 @@ var Page = (function () {
     };
     Page.prototype.fillRandom = function (min, max) {
         for (var i = 0; i < random(min, max); i++) {
-            this.createPlanet(random(0, window.innerWidth), random(0, window.innerHeight), 1, 0, 0);
+            this.createPlanet(random(0, window.innerWidth * 2), random(0, window.innerHeight * 2), 1, 0, 0);
         }
     };
     Page.prototype.updateFps = function () {
         this.fpsCounter.innerText = Math.round(createjs.Ticker.getMeasuredFPS()).toString();
+    };
+    Page.prototype.updateMass = function () {
+        var mass = 0;
+        this.system.objects.forEach(function (x) { return mass += x.mass; });
+        this.mass.innerText = mass.toString();
     };
     return Page;
 })();
@@ -72,6 +91,7 @@ function sortBy(array, fn) {
 }
 var SolarSystem = (function () {
     function SolarSystem() {
+        this.offset = { x: 0, y: 0 };
         this.objects = [];
         this.stage = new createjs.Stage("canvas");
         this.relationships = [];
@@ -150,7 +170,6 @@ var PlanetRelationship = (function () {
                 console.log('error');
         }
         else {
-            console.log(this.toString());
         }
     };
     PlanetRelationship.apply1 = function (a, b) {
@@ -159,7 +178,7 @@ var PlanetRelationship = (function () {
         var distSquareAb = diffXab * diffXab + diffYab * diffYab;
         var dist = Math.sqrt(distSquareAb);
         dist = dist / 2;
-        if (dist > a.radius + b.radius) {
+        if (dist >= (a.radius / 2) + (b.radius / 2)) {
             var totalForce = (a.mass * b.mass) / distSquareAb;
             a.fX += (totalForce * diffXab) / dist;
             a.fY += totalForce * diffYab / dist;

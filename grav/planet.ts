@@ -34,7 +34,7 @@ class Planet {
         if (this.color.getLightness() < .3) {
             this.color = this.color.lightenByAmount(1);
         }
-        this.shape.graphics.drawCircle(0,0,0).setStrokeStyle(1).beginStroke('white')            .beginFill(this.color.toCSS());
+        this.shape.graphics.drawCircle(0, 0, 0).setStrokeStyle(1).beginStroke('white').beginFill(this.color.toCSS());
         system.stage.addChild(this.shape);
         let p = this;
         let obj = this.shape;
@@ -72,21 +72,21 @@ class Planet {
     }
 
     updateShape() {
-        this.shape.x = this.x;
-        this.shape.y = this.y;
+        this.shape.x = this.x + this.system.offset.x;
+        this.shape.y = this.y + this.system.offset.y;
     }
 
     updateShapeGraphics() {
         let obj = this.shape;
         obj.graphics.clear();
-    let g =     obj.graphics
+        let g = obj.graphics
         // .f(this.color.toCSS())
-  .beginFill(this.color.toCSS())
+            .beginFill(this.color.toCSS())
             .drawCircle(0, 0, this.radius);//"#08F"
     }
 
     destroy() {
-        console.log('destroy', this.id);
+        // console.log('destroy', this.id);
         this.isDestroyed = true;
         this.mass = 0;
         this.system.stage.removeChild(this.shape);

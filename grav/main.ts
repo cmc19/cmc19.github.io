@@ -5,7 +5,7 @@
 /// <reference path="./util"/>
 /// <reference path="./planet"/>
 
-const speedModifier = 25;//25
+const speedModifier = 4;//25
 
 
 class Page {
@@ -32,7 +32,21 @@ class Page {
             this.mouse.startY = e.stageY;
         });
         stage.on("stagemouseup", (e: createjs.MouseEvent) => {
-            this.createPlanet(this.mouse.startX - 5, this.mouse.startY - 5, random(2, 5), e.stageX - this.mouse.startX, e.stageY - this.mouse.startY);
+            console.log(e.nativeEvent.button);
+            if (e.nativeEvent.button == 2) {
+                e.preventDefault();
+                e.nativeEvent.preventDefault();
+                e.nativeEvent.cancelBubble = true;
+            }
+            if (e.nativeEvent.button == 1) {
+                console.log(e.nativeEvent);
+                this.system.offset.x += e.stageX - this.mouse.startX - 5;
+                this.system.offset.y += e.stageY - this.mouse.startY;
+            }
+            else {
+                this.createPlanet((this.mouse.startX - this.system.offset.x) - 5, (this.mouse.startY - this.system.offset.y) - 5, random(2, 5), e.stageX - this.mouse.startX, e.stageY - this.mouse.startY);
+            }
+            //
         });
 
         createjs.Ticker.on("tick", () => {
@@ -43,17 +57,18 @@ class Page {
             if (this.tickCount % 60) {
                 this.system.cleanup();
                 this.updateFps();
+                this.updateMass();
             }
 
         });
-        createjs.Ticker.setFPS(10);
+        createjs.Ticker.setFPS(60);
         this.fillWindow();
 
-        this.fillRandom(50, 100);
+        this.fillRandom(1000, 1200);
 
-for (let i = 0; i < 50; i++) {
-        this.createPlanet(this.canvas.width /2, this.canvas.height /2, 1);
-}
+        for (let i = 0; i < 50; i++) {
+            this.createPlanet(this.canvas.width / 2, this.canvas.height / 2, 1);
+        }
 
     }
 
@@ -70,12 +85,18 @@ for (let i = 0; i < 50; i++) {
 
     fillRandom(min, max) {
         for (let i = 0; i < random(min, max); i++) {
-            this.createPlanet(random(0, window.innerWidth), random(0, window.innerHeight), 1, 0, 0);
+            this.createPlanet(random(0, window.innerWidth*2), random(0, window.innerHeight*2), 1, 0, 0);
         }
     }
 
-    updateFps(){
-        this.fpsCounter.innerText = Math.round( createjs.Ticker.getMeasuredFPS()).toString();
+    updateFps() {
+        this.fpsCounter.innerText = Math.round(createjs.Ticker.getMeasuredFPS()).toString();
+    }
+
+    updateMass() {
+        let mass = 0
+        this.system.objects.forEach(x=> mass += x.mass);
+        this.mass.innerText = mass.toString();
     }
 }
 
@@ -86,6 +107,9 @@ function sortBy<T, Y>(array: T[], fn: (t: T) => Y) {
 }
 
 class SolarSystem {
+
+    offset = { x: 0, y: 0 };
+
     objects: Planet[] = [];
     stage = new createjs.Stage("canvas");
     relationships: PlanetRelationship[] = [];
@@ -166,7 +190,7 @@ class PlanetRelationship {
             let r2 = PlanetRelationship.apply1(b, a);
             if (r2 == false) console.log('error');
         } else {
-            console.log(this.toString())
+            // console.log(this.toString())
         }
     }
 
@@ -180,7 +204,7 @@ class PlanetRelationship {
         var dist = Math.sqrt(distSquareAb);
         dist = dist / 2;
 
-        if (dist > a.radius + b.radius) {
+        if (dist >= (a.radius / 2) + (b.radius / 2)) {
             var totalForce = (a.mass * b.mass) / distSquareAb;
             a.fX += (totalForce * diffXab) / dist;
             a.fY += totalForce * diffYab / dist;
