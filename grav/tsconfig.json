@@ -16,6 +16,7 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
+        "./Relationship.ts",
         "./main.ts",
         "./planet.ts",
         "./scripts/color.d.ts",
