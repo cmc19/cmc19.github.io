@@ -53,7 +53,7 @@ var Page = (function () {
         createjs.Ticker.on("tick", function () {
             _this.tickCount++;
             _this.system.tick();
-            if (_this.tickCount % 60) {
+            if (_this.tickCount % 60 == 0) {
                 _this.system.cleanup();
                 _this.updateFps();
                 _this.updateMass();
@@ -87,7 +87,7 @@ var Page = (function () {
     };
     Page.prototype.updateBodyCount = function () {
         this.bodyCount.innerText = this.system.objects.length.toString();
-        this.relCount.innerText = this.system.relationships.length.toString();
+        this.relCount.innerText = this.system.relationships.filter(function (x) { return x.isActive; }).length.toString() + '/' + this.system.relationships.length.toString();
     };
     return Page;
 })();
@@ -117,11 +117,10 @@ var SolarSystem = (function () {
         var allObjs = this.objects;
         var stage = this.stage;
         var ignore = [];
-        this.relationships.filter(function (x) { return x.isDestroyed == false; }).forEach(function (c) {
+        this.relationships.forEach(function (c) {
             c.tick();
         });
         allObjs.forEach(function (x) { return x.tick(); });
-        this.objects = this.objects.filter(function (x) { return x['ignore'] === undefined; });
         this.stage.update();
     };
     SolarSystem.prototype.cleanup = function () {

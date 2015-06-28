@@ -55,7 +55,7 @@ class Page {
 
             this.system.tick();
 
-            if (this.tickCount % 60) {
+            if (this.tickCount % 60==0) {
                 this.system.cleanup();
                 this.updateFps();
                 this.updateMass();
@@ -102,7 +102,7 @@ class Page {
     }
     updateBodyCount() {
         this.bodyCount.innerText = this.system.objects.length.toString();
-        this.relCount.innerText = this.system.relationships.length.toString();
+        this.relCount.innerText = this.system.relationships.filter(x=>x.isActive).length.toString() + '/' + this.system.relationships.length.toString()  ;
     }
 }
 
@@ -133,18 +133,13 @@ class SolarSystem {
         let stage = this.stage;
         let ignore = [];
 
-
-        this.relationships.filter(x=> x.isDestroyed == false).forEach(c => {
+//.filter(x=> x.isDestroyed == false || x.isActive == false)
+        this.relationships.forEach(c => {
             c.tick();
         });
 
         allObjs.forEach(x=> x.tick());
-
-        this.objects = this.objects.filter(x=> x['ignore'] === undefined);
         this.stage.update();
-
-
-
     }
 
     cleanup() {

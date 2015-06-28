@@ -1,6 +1,7 @@
 var PlanetRelationship = (function () {
     function PlanetRelationship(a, b) {
         this.id = PlanetRelationship.totalIdx++;
+        this.ignoreFor = 0;
         this.a = a;
         this.b = b;
     }
@@ -33,21 +34,32 @@ var PlanetRelationship = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(PlanetRelationship.prototype, "isActive", {
+        get: function () {
+            return this.ignoreFor == 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
     PlanetRelationship.prototype.tick = function () {
         if (this.a.isDestroyed || this.b.isDestroyed)
             return;
+        if (this.ignoreFor !== 0) {
+            this.ignoreFor--;
+            return;
+        }
         var a = this.largest;
         var b = this.smallest;
-        var r = PlanetRelationship.apply1(a, b);
+        var r = this.apply1(a, b);
         if (r) {
-            var r2 = PlanetRelationship.apply1(b, a);
+            var r2 = this.apply1(b, a);
             if (r2 == false)
                 console.log('error');
         }
         else {
         }
     };
-    PlanetRelationship.apply1 = function (a, b) {
+    PlanetRelationship.prototype.apply1 = function (a, b) {
         var diffXab = b.x - a.x;
         var diffYab = b.y - a.y;
         var distSquareAb = diffXab * diffXab + diffYab * diffYab;
@@ -57,6 +69,9 @@ var PlanetRelationship = (function () {
             var totalForce = (a.mass * b.mass) / distSquareAb;
             a.fX += (totalForce * diffXab) / dist;
             a.fY += totalForce * diffYab / dist;
+            if (totalForce < .001) {
+                this.ignoreFor = random(45, 75);
+            }
         }
         else {
             a.fX += b.vX / b.mass;

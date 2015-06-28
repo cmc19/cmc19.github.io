@@ -4,7 +4,7 @@ class PlanetRelationship {
     a: Planet;
     b: Planet;
 
-    ignoreFor:number = 0;
+    ignoreFor: number = 0;
 
     get isDestroyed() {
         return this.a.isDestroyed || this.b.isDestroyed || this.a.id == this.b.id;
@@ -25,6 +25,10 @@ class PlanetRelationship {
         return b.mass > a.mass ? a : b;
     }
 
+    get isActive(): boolean {
+        return this.ignoreFor == 0;
+    }
+
     constructor(a: Planet, b: Planet) {
         this.a = a;
         this.b = b;
@@ -32,7 +36,10 @@ class PlanetRelationship {
 
     tick() {
         if (this.a.isDestroyed || this.b.isDestroyed) return;
-
+        if (this.ignoreFor !== 0) {
+            this.ignoreFor--;
+            return;
+        }
 
 
         let a = this.largest;
@@ -61,8 +68,8 @@ class PlanetRelationship {
             var totalForce = (a.mass * b.mass) / distSquareAb;
             a.fX += (totalForce * diffXab) / dist;
             a.fY += totalForce * diffYab / dist;
-            if(totalForce < .001){
-
+            if (totalForce < .001) {
+                this.ignoreFor = random(45,75) ;
             }
         } else {
             //colided
