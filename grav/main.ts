@@ -73,10 +73,10 @@ this.canvas.addEventListener('mousewheel',x=>{
         createjs.Ticker.setFPS(60);
         this.fillWindow();
 
-        this.fillRandom(1000, 1200);
+        this.fillRandom(2000, 2400);
 
-        for (let i = 0; i < 50; i++) {
-            this.createPlanet(this.canvas.width / 2, this.canvas.height / 2, 1);
+        for (let i = 0; i < 800; i++) {
+            this.createPlanet(this.canvas.width , this.canvas.height, 1);
         }
 
     }

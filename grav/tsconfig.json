@@ -9,13 +9,15 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "out": "out.js"
     },
     "filesGlob": [
         "./**/*.ts",
         "!./node_modules/**/*.ts"
     ],
     "files": [
+        "./KeyManager.ts",
         "./Relationship.ts",
         "./main.ts",
         "./planet.ts",

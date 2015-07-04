@@ -1,5 +1,7 @@
 /// <reference path="./util"/>
 
+const speedModifier = 4;//25
+
 class Planet {
     static totalIdx = 0;
     id = Planet.totalIdx++;
@@ -71,9 +73,14 @@ class Planet {
         t.fX = t.fY = 0;
     }
 
+    private _lastZoom = 0;
     updateShape() {
-        this.shape.x = (this.x + this.system.offset.x) / this.system.zoom;
-        this.shape.y = (this.y + this.system.offset.y) / this.system.zoom;;
+        if (this._lastZoom != this.system.zoom) {
+            this._lastZoom = this.system.zoom;
+            this.updateShapeGraphics();
+        }
+        this.shape.x = (this.x + this.system.offset.x) / Math.pow(2, this.system.zoom - 1);
+        this.shape.y = (this.y + this.system.offset.y) / Math.pow(2, this.system.zoom - 1);
     }
 
     updateShapeGraphics() {
@@ -82,7 +89,7 @@ class Planet {
         let g = obj.graphics
         // .f(this.color.toCSS())
             .beginFill(this.color.toCSS())
-            .drawCircle(0, 0, this.radius);//"#08F"
+            .drawCircle(0, 0, this.radius /  Math.pow(2, this.system.zoom - 1));//"#08F"
     }
 
     destroy() {
