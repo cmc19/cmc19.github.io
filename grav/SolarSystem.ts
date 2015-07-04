@@ -34,4 +34,29 @@ class SolarSystem {
         this.relationships = this.relationships.filter(x=> x.isDestroyed == false);
     }
 
+    setCenter(x: number, y: number) {
+        console.log(`setCenter(${x}, ${y});`);
+        x = x*-1;
+        y= y*-1;
+        this.offset = { x: x, y: y };
+        let c = <HTMLCanvasElement> this.stage.canvas;
+        let w = c.width;
+        let h = c.height;
+        console.info(`w:${w}, h:${h}`);
+        let z = Math.pow(2, this.zoom - 1);
+        let xr = ((w / 2) * z);
+        let yr = ((h / 2) * z);
+        this.offset = {
+            x:  (x+ xr) ,
+            y: (y + yr)
+        };
+        this.logOffset();
+    }
+
+    logOffset() {
+        console.log(`offset: {x:${this.offset.x}, y:${this.offset.y}}`);
+    }
+    toString() {
+        return `offset: {x:${this.offset.x}, y:${this.offset.y}}`;
+    }
 }

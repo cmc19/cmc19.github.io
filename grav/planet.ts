@@ -98,4 +98,8 @@ class Planet {
         this.mass = 0;
         this.system.stage.removeChild(this.shape);
     }
+
+    toString(){
+        return `{mass: ${this.mass}, x: ${this.x}, y: ${this.y}}`;
+    }
 }

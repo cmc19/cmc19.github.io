@@ -530,6 +530,64 @@ var PlanetRelationship = (function () {
     PlanetRelationship.totalIdx = 0;
     return PlanetRelationship;
 })();
+var SolarSystem = (function () {
+    function SolarSystem() {
+        this.offset = { x: 0, y: 0 };
+        this.zoom = 1;
+        this.objects = [];
+        this.stage = new createjs.Stage("canvas");
+        this.relationships = [];
+    }
+    SolarSystem.prototype.createPlanet = function (x, y, mass, vx, vy) {
+        var _this = this;
+        if (vx === void 0) { vx = 0; }
+        if (vy === void 0) { vy = 0; }
+        var p = new Planet(this, x, y, mass, vx, vy);
+        this.objects.forEach(function (p2) {
+            _this.relationships.push(new PlanetRelationship(p2, p));
+        });
+        this.objects.push(p);
+    };
+    SolarSystem.prototype.tick = function () {
+        var allObjs = this.objects;
+        var stage = this.stage;
+        var ignore = [];
+        this.relationships.forEach(function (c) {
+            c.tick();
+        });
+        allObjs.forEach(function (x) { return x.tick(); });
+        this.stage.update();
+    };
+    SolarSystem.prototype.cleanup = function () {
+        this.objects = this.objects.filter(function (x) { return x.isDestroyed == false; });
+        this.relationships = this.relationships.filter(function (x) { return x.isDestroyed == false; });
+    };
+    SolarSystem.prototype.setCenter = function (x, y) {
+        console.log("setCenter(" + x + ", " + y + ");");
+        x = x * -1;
+        y = y * -1;
+        this.offset = { x: x, y: y };
+        var c = this.stage.canvas;
+        var w = c.width;
+        var h = c.height;
+        console.info("w:" + w + ", h:" + h);
+        var z = Math.pow(2, this.zoom - 1);
+        var xr = ((w / 2) * z);
+        var yr = ((h / 2) * z);
+        this.offset = {
+            x: (x + xr),
+            y: (y + yr)
+        };
+        this.logOffset();
+    };
+    SolarSystem.prototype.logOffset = function () {
+        console.log("offset: {x:" + this.offset.x + ", y:" + this.offset.y + "}");
+    };
+    SolarSystem.prototype.toString = function () {
+        return "offset: {x:" + this.offset.x + ", y:" + this.offset.y + "}";
+    };
+    return SolarSystem;
+})();
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -646,6 +704,9 @@ var Planet = (function () {
         this.mass = 0;
         this.system.stage.removeChild(this.shape);
     };
+    Planet.prototype.toString = function () {
+        return "{mass: " + this.mass + ", x: " + this.x + ", y: " + this.y + "}";
+    };
     Planet.totalIdx = 0;
     return Planet;
 })();
@@ -656,27 +717,33 @@ var Planet = (function () {
 /// <reference path="./planet"/>
 /// <reference path="./Relationship"/>
 /// <reference path="./KeyManager"/>
+/// <reference path="./SolarSystem"/>
 var Page = (function () {
     function Page() {
         this.keyManger = new CMC.KeyManager();
         this.system = new SolarSystem();
         this.tickCount = 0;
         this.mouse = { startX: 0, startY: 0 };
+        this.cl = null;
         this.bodyCount = document.getElementById('bodyCount');
         this.mass = document.getElementById('mass');
         this.fpsCounter = document.getElementById('fps');
         this.relCount = document.getElementById('relCount');
         this.zoomDisplay = document.getElementById('zoom');
     }
-    Object.defineProperty(Page.prototype, "mouseLocation", {
-        get: function () {
-            var s = this.system;
-            var o = s.offset;
-            var z = Math.pow(2, s.zoom);
-        },
-        enumerable: true,
-        configurable: true
-    });
+    Page.prototype.getMouseLocation = function (x, y) {
+        var s = this.system;
+        var o = s.offset;
+        var z = Math.pow(2, s.zoom - 1);
+        var r = {
+            x: o.x - ((x) * z),
+            y: o.y - ((y) * z)
+        };
+        return {
+            x: r.x * -1, y: r.y * -1
+        };
+    };
+    ;
     Object.defineProperty(Page.prototype, "canvas", {
         get: function () {
             return this.system.stage.canvas;
@@ -692,9 +759,13 @@ var Page = (function () {
         var _this = this;
         var stage = this.system.stage;
         $(window).on('resize', function () { return _this.fillWindow(); });
+        stage.on('stagemousemove', function (e) {
+            _this.cl = _this.getMouseLocation(e.stageX, e.stageY);
+        });
         stage.on("stagemousedown", function (e) {
             _this.mouse.startX = e.stageX;
             _this.mouse.startY = e.stageY;
+            _this.getMouseLocation(e.stageX, e.stageY);
         });
         stage.on("stagemouseup", function (e) {
             if (e.nativeEvent.button == 2) {
@@ -709,17 +780,22 @@ var Page = (function () {
             else {
                 _this.createPlanet((_this.mouse.startX - _this.system.offset.x) - 5, (_this.mouse.startY - _this.system.offset.y) - 5, random(2, 5), e.stageX - _this.mouse.startX, e.stageY - _this.mouse.startY);
             }
+            _this.system.logOffset();
         });
         this.canvas.addEventListener('mousewheel', function (x) {
             console.log('mousewheel', x);
+            var ml = _this.cl;
             if (x.wheelDelta <= -1) {
                 _this.system.zoom++;
             }
             else if (x.wheelDelta >= 1) {
-                if (_this.system.zoom == 1)
-                    return;
-                _this.system.zoom--;
+                if (_this.system.zoom == 1) {
+                }
+                else {
+                    _this.system.zoom--;
+                }
             }
+            _this.system.setCenter(ml.x, ml.y);
         });
         createjs.Ticker.on("tick", function () {
             _this.tickCount++;
@@ -733,6 +809,7 @@ var Page = (function () {
         });
         createjs.Ticker.setFPS(60);
         this.fillWindow();
+        this.fillRandom(20, 100);
         this.fillRandom(1000, 2400);
         for (var i = 0; i < 800; i++) {
             this.createPlanet(this.canvas.width, this.canvas.height, 1);
@@ -741,6 +818,8 @@ var Page = (function () {
         this.keyManger.bind('2', function (e) { createjs.Ticker.setFPS(30); });
         this.keyManger.bind('3', function (e) { createjs.Ticker.setFPS(60); });
         this.keyManger.bind('4', function (e) { createjs.Ticker.setFPS(90); });
+        this.keyManger.bind('5', function (e) { createjs.Ticker.setFPS(120); });
+        this.keyManger.bind('0', function (e) { _this.system.offset = { x: 0, y: 0 }; });
     };
     Page.prototype.createPlanet = function (x, y, mass, vx, vy) {
         if (vx === void 0) { vx = 0; }
@@ -753,8 +832,8 @@ var Page = (function () {
         }
     };
     Page.prototype.updateFps = function () {
-        this.fpsCounter.innerText = Math.round(createjs.Ticker.getMeasuredFPS()).toString();
-        this.zoomDisplay.innerText = this.system.zoom.toString();
+        this.fpsCounter.innerText = Math.round(createjs.Ticker.getMeasuredFPS()).toString() + "/" + Math.round(createjs.Ticker.getFPS());
+        this.zoomDisplay.innerText = this.system.zoom.toString() + " " + this.system.toString();
     };
     Page.prototype.updateMass = function () {
         var mass = 0;
@@ -772,40 +851,6 @@ function sortBy(array, fn) {
         return (fn(a) > fn(b)) ? 1 : (fn(a) < fn(b)) ? -1 : 0;
     });
 }
-var SolarSystem = (function () {
-    function SolarSystem() {
-        this.offset = { x: 0, y: 0 };
-        this.zoom = 1;
-        this.objects = [];
-        this.stage = new createjs.Stage("canvas");
-        this.relationships = [];
-    }
-    SolarSystem.prototype.createPlanet = function (x, y, mass, vx, vy) {
-        var _this = this;
-        if (vx === void 0) { vx = 0; }
-        if (vy === void 0) { vy = 0; }
-        var p = new Planet(this, x, y, mass, vx, vy);
-        this.objects.forEach(function (p2) {
-            _this.relationships.push(new PlanetRelationship(p2, p));
-        });
-        this.objects.push(p);
-    };
-    SolarSystem.prototype.tick = function () {
-        var allObjs = this.objects;
-        var stage = this.stage;
-        var ignore = [];
-        this.relationships.forEach(function (c) {
-            c.tick();
-        });
-        allObjs.forEach(function (x) { return x.tick(); });
-        this.stage.update();
-    };
-    SolarSystem.prototype.cleanup = function () {
-        this.objects = this.objects.filter(function (x) { return x.isDestroyed == false; });
-        this.relationships = this.relationships.filter(function (x) { return x.isDestroyed == false; });
-    };
-    return SolarSystem;
-})();
 var page = new Page();
 $(document).ready(function () { return page.init(); });
 //# sourceMappingURL=out.js.map

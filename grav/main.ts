@@ -20,16 +20,23 @@ class Page {
 
     mouse = { startX: 0, startY: 0 };
 
-    getMouseLocation(e: createjs.MouseEvent): IXY {
+    getMouseLocation(x, y): IXY {
+
         let s = this.system;
         let o = s.offset;
-        let z = Math.pow(2, s.zoom);
+        let z = Math.pow(2, s.zoom - 1);
 
-        return {
-            x: (e.localX * z) + o.x,
-            y: (e.localY * z) + o.y
+        let r = {
+            x: o.x - ((x) * z),
+            y: o.y - ((y) * z)
         }
+        // console.log(`getMouseLocation(${x}, ${y}) => {x:${r.x}, y:${r.y}}`);
+        return {
+            x: r.x * -1, y: r.y * -1
+        };
     }
+
+    cl: IXY = null;;
 
     get canvas(): HTMLCanvasElement {
         return <HTMLCanvasElement> this.system.stage.canvas;
@@ -44,9 +51,14 @@ class Page {
         let stage = this.system.stage;
         $(window).on('resize', () => this.fillWindow());
 
+        stage.on('stagemousemove', (e: createjs.MouseEvent) => {
+            this.cl = this.getMouseLocation(e.stageX, e.stageY);
+        });
+
         stage.on("stagemousedown", (e: createjs.MouseEvent) => {
             this.mouse.startX = e.stageX;
             this.mouse.startY = e.stageY;
+            this.getMouseLocation(e.stageX, e.stageY);
         });
         stage.on("stagemouseup", (e: createjs.MouseEvent) => {
             if (e.nativeEvent.button == 2) {
@@ -61,16 +73,22 @@ class Page {
             else {
                 this.createPlanet((this.mouse.startX - this.system.offset.x) - 5, (this.mouse.startY - this.system.offset.y) - 5, random(2, 5), e.stageX - this.mouse.startX, e.stageY - this.mouse.startY);
             }
-            //
+            this.system.logOffset();
         });
         this.canvas.addEventListener('mousewheel', x=> {
             console.log('mousewheel', x);
+            let ml = this.cl;
             if (x.wheelDelta <= -1) {
                 this.system.zoom++;
             } else if (x.wheelDelta >= 1) {
-                if (this.system.zoom == 1) return;
-                this.system.zoom--;
+                if (this.system.zoom == 1) {
+                    //return;
+                }
+                else {
+                    this.system.zoom--;
+                }
             }
+            this.system.setCenter(ml.x, ml.y);
         })
 
         createjs.Ticker.on("tick", () => {
@@ -89,7 +107,8 @@ class Page {
         createjs.Ticker.setFPS(60);
         this.fillWindow();
 
-        this.fillRandom(1000, 2400);
+        this.fillRandom(20, 100);
+         this.fillRandom(1000, 2400);
 
         for (let i = 0; i < 800; i++) {
             this.createPlanet(this.canvas.width, this.canvas.height, 1);
@@ -99,6 +118,8 @@ class Page {
         this.keyManger.bind('2', (e) => { createjs.Ticker.setFPS(30); });
         this.keyManger.bind('3', (e) => { createjs.Ticker.setFPS(60); });
         this.keyManger.bind('4', (e) => { createjs.Ticker.setFPS(90); });
+        this.keyManger.bind('5', (e) => { createjs.Ticker.setFPS(120); });
+        this.keyManger.bind('0', (e) => { this.system.offset = { x: 0, y: 0 } });
     }
 
 
@@ -119,8 +140,10 @@ class Page {
     }
 
     updateFps() {
-        this.fpsCounter.innerText = Math.round(createjs.Ticker.getMeasuredFPS()).toString();
-        this.zoomDisplay.innerText = this.system.zoom.toString();
+        this.fpsCounter.innerText = `${Math.round(createjs.Ticker.getMeasuredFPS()).toString()}/${Math.round(createjs.Ticker.getFPS())}`;
+        this.zoomDisplay.innerText = this.system.zoom.toString() + ` ` + this.system.toString();
+        // console.info(this.cl);
+        // console.log('max', _(this.system.objects).max(x=> x.mass).toString());
     }
 
     updateMass() {
@@ -130,7 +153,7 @@ class Page {
     }
     updateBodyCount() {
         this.bodyCount.innerText = this.system.objects.length.toString();
-        this.relCount.innerText = this.system.relationships.filter(x=> x.isActive).length.toString() + '/' + this.system.relationships.length.toString();
+        this.relCount.innerText = this.system.relationships.filter(x=> x.isActive).length.toString() + '/' +  this.system.relationships.length.toString();
     }
 }
 
