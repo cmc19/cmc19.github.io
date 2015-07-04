@@ -19,6 +19,7 @@
     "files": [
         "./KeyManager.ts",
         "./Relationship.ts",
+        "./SolarSystem.ts",
         "./main.ts",
         "./planet.ts",
         "./scripts/color.d.ts",

@@ -5,15 +5,31 @@
 /// <reference path="./util"/>
 /// <reference path="./planet"/>
 /// <reference path="./Relationship"/>
+/// <reference path="./KeyManager"/>
+/// <reference path="./SolarSystem"/>
 
-const speedModifier = 4;//25
-
+interface IXY {
+    x: number;
+    y: number;
+}
 
 class Page {
+    keyManger = new CMC.KeyManager();
     system = new SolarSystem();
     tickCount = 0;
 
     mouse = { startX: 0, startY: 0 };
+
+    getMouseLocation(e: createjs.MouseEvent): IXY {
+        let s = this.system;
+        let o = s.offset;
+        let z = Math.pow(2, s.zoom);
+
+        return {
+            x: (e.localX * z) + o.x,
+            y: (e.localY * z) + o.y
+        }
+    }
 
     get canvas(): HTMLCanvasElement {
         return <HTMLCanvasElement> this.system.stage.canvas;
@@ -39,7 +55,7 @@ class Page {
                 e.nativeEvent.cancelBubble = true;
             }
             if (e.nativeEvent.button == 1) {
-                this.system.offset.x += (e.stageX - this.mouse.startX)* this.system.zoom;
+                this.system.offset.x += (e.stageX - this.mouse.startX) * this.system.zoom;
                 this.system.offset.y += (e.stageY - this.mouse.startY) * this.system.zoom;
             }
             else {
@@ -47,22 +63,22 @@ class Page {
             }
             //
         });
-this.canvas.addEventListener('mousewheel',x=>{
-    console.log('mousewheel',x);
-    if( x.wheelDelta <= -1){
-        this.system.zoom++;
-    }else if (x.wheelDelta >= 1){
-        if(this.system.zoom == 1) return;
-        this.system.zoom--;
-    }
-})
+        this.canvas.addEventListener('mousewheel', x=> {
+            console.log('mousewheel', x);
+            if (x.wheelDelta <= -1) {
+                this.system.zoom++;
+            } else if (x.wheelDelta >= 1) {
+                if (this.system.zoom == 1) return;
+                this.system.zoom--;
+            }
+        })
 
         createjs.Ticker.on("tick", () => {
             this.tickCount++;
 
             this.system.tick();
 
-            if (this.tickCount % 60==0) {
+            if (this.tickCount % 60 == 0) {
                 this.system.cleanup();
                 this.updateFps();
                 this.updateMass();
@@ -73,12 +89,16 @@ this.canvas.addEventListener('mousewheel',x=>{
         createjs.Ticker.setFPS(60);
         this.fillWindow();
 
-        this.fillRandom(2000, 2400);
+        this.fillRandom(1000, 2400);
 
         for (let i = 0; i < 800; i++) {
-            this.createPlanet(this.canvas.width , this.canvas.height, 1);
+            this.createPlanet(this.canvas.width, this.canvas.height, 1);
         }
 
+        this.keyManger.bind('1', (e) => { createjs.Ticker.setFPS(15); });
+        this.keyManger.bind('2', (e) => { createjs.Ticker.setFPS(30); });
+        this.keyManger.bind('3', (e) => { createjs.Ticker.setFPS(60); });
+        this.keyManger.bind('4', (e) => { createjs.Ticker.setFPS(90); });
     }
 
 
@@ -87,7 +107,7 @@ this.canvas.addEventListener('mousewheel',x=>{
     mass: HTMLSpanElement = document.getElementById('mass');
     fpsCounter: HTMLSpanElement = document.getElementById('fps');
     relCount: HTMLSpanElement = document.getElementById('relCount');
-
+    zoomDisplay: HTMLSpanElement = document.getElementById('zoom');
     createPlanet(x, y, mass, vx = 0, vy = 0) {
         this.system.createPlanet(x, y, mass, vx, vy);
     }
@@ -100,6 +120,7 @@ this.canvas.addEventListener('mousewheel',x=>{
 
     updateFps() {
         this.fpsCounter.innerText = Math.round(createjs.Ticker.getMeasuredFPS()).toString();
+        this.zoomDisplay.innerText = this.system.zoom.toString();
     }
 
     updateMass() {
@@ -109,7 +130,7 @@ this.canvas.addEventListener('mousewheel',x=>{
     }
     updateBodyCount() {
         this.bodyCount.innerText = this.system.objects.length.toString();
-        this.relCount.innerText = this.system.relationships.filter(x=>x.isActive).length.toString() + '/' + this.system.relationships.length.toString()  ;
+        this.relCount.innerText = this.system.relationships.filter(x=> x.isActive).length.toString() + '/' + this.system.relationships.length.toString();
     }
 }
 
@@ -119,43 +140,7 @@ function sortBy<T, Y>(array: T[], fn: (t: T) => Y) {
     });
 }
 
-class SolarSystem {
 
-    offset = { x: 0, y: 0 };
-    zoom:number = 1;
-
-    objects: Planet[] = [];
-    stage = new createjs.Stage("canvas");
-    relationships: PlanetRelationship[] = [];
-
-    createPlanet(x, y, mass, vx = 0, vy = 0) {
-        let p = new Planet(this, x, y, mass, vx, vy);
-        this.objects.forEach(p2=> {
-            this.relationships.push(new PlanetRelationship(p2, p));
-        });
-        this.objects.push(p);
-    }
-
-    tick() {
-        let allObjs = this.objects;
-        let stage = this.stage;
-        let ignore = [];
-
-//.filter(x=> x.isDestroyed == false || x.isActive == false)
-        this.relationships.forEach(c => {
-            c.tick();
-        });
-
-        allObjs.forEach(x=> x.tick());
-        this.stage.update();
-    }
-
-    cleanup() {
-        this.objects = this.objects.filter(x=> x.isDestroyed == false);
-        this.relationships = this.relationships.filter(x=> x.isDestroyed == false);
-    }
-
-}
 
 
 
