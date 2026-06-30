@@ -1,0 +1,10 @@
+{
+    "$schema": "https://raw.githubusercontent.com/mapbox/tilejson-spec/refs/heads/master/3.0.0/schema.json",
+    "tilejson": "3.0.0",
+    "tiles": [
+        "http://localhost:5173/hydrants/{z}/{x}/{y}.pbf"
+    ],
+    "minzoom": 14,
+    "maxzoom": 14,
+    "name": "Hydrants"
+}

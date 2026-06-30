@@ -1,0 +1,1416 @@
+{
+    "type": "FeatureCollection",
+    "name": "Fire_Stations",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 27,
+                "Territory_Num": "222",
+                "Station_Name": "West Grove FC (Substation)",
+                "Dept_Name": "West Grove Fire Co.",
+                "Main_Station_YN": "N",
+                "Chesco_Service_YN": "Y",
+                "Address": "1517 New London RD",
+                "City": "Kemblesville",
+                "State": "PA",
+                "ZIP_Code": "19350",
+                "Muni_Abrv": "LDNBRT",
+                "Muni_Name": "London Britain Township",
+                "Muni_Num": "73",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.807216261026696,
+                    39.743417044488197
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 28,
+                "Territory_Num": "121",
+                "Station_Name": "Union FC (Substaion)",
+                "Dept_Name": "Union Fire Co., Oxford",
+                "Main_Station_YN": "N",
+                "Chesco_Service_YN": "Y",
+                "Address": "527 E Christine RD",
+                "City": "Nottingham",
+                "State": "PA",
+                "ZIP_Code": "19362",
+                "Muni_Abrv": "WNOTT",
+                "Muni_Name": "West Nottingham Township",
+                "Muni_Num": "68",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.015666064081998,
+                    39.748483707804702
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 31,
+                "Territory_Num": "21",
+                "Station_Name": "Union FC ",
+                "Dept_Name": "Union Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "315 Market ST",
+                "City": "Oxford",
+                "State": "PA",
+                "ZIP_Code": "19363",
+                "Muni_Abrv": "OXFRD",
+                "Muni_Name": "Oxford Borough",
+                "Muni_Num": "06",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.978160480343604,
+                    39.785121620595397
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 32,
+                "Territory_Num": "122",
+                "Station_Name": "West Grove FC (Substation)",
+                "Dept_Name": "West Grove Fire Co.",
+                "Main_Station_YN": "N",
+                "Chesco_Service_YN": "Y",
+                "Address": "1 Firehouse LA",
+                "City": "New London",
+                "State": "PA",
+                "ZIP_Code": "19390",
+                "Muni_Abrv": "NEWLND",
+                "Muni_Name": "New London Township",
+                "Muni_Num": "71",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.876380064555903,
+                    39.7843304583551
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 35,
+                "Territory_Num": "22",
+                "Station_Name": "West Grove FC",
+                "Dept_Name": "West Grove Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "101 Walnut ST",
+                "City": "West Grove",
+                "State": "PA",
+                "ZIP_Code": "19390",
+                "Muni_Abrv": "WGROVE",
+                "Muni_Name": "West Grove Borough",
+                "Muni_Num": "05",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.827554252745003,
+                    39.821568915577899
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 36,
+                "Territory_Num": "23",
+                "Station_Name": "Avondale FC",
+                "Dept_Name": "Avondale Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "23 Firehouse WY",
+                "City": "Avondale",
+                "State": "PA",
+                "ZIP_Code": "19311",
+                "Muni_Abrv": "AVNDAL",
+                "Muni_Name": "Avondale Borough",
+                "Muni_Num": "04",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.775174811189899,
+                    39.8212108898027
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 38,
+                "Territory_Num": "24",
+                "Station_Name": "Kennett FC",
+                "Dept_Name": "Kennett Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "301 Dalmatian LA",
+                "City": "Kennett Square",
+                "State": "PA",
+                "ZIP_Code": "19348",
+                "Muni_Abrv": "KNTSQR",
+                "Muni_Name": "Kennett Square Borough",
+                "Muni_Num": "03",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.704674663415204,
+                    39.845114176720998
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 40,
+                "Territory_Num": "25",
+                "Station_Name": "Longwood FC",
+                "Dept_Name": "Longwood Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "1001 E Baltimore PK",
+                "City": "Kennett Square",
+                "State": "PA",
+                "ZIP_Code": "19348",
+                "Muni_Abrv": "KNTTWP",
+                "Muni_Name": "Kennett Township",
+                "Muni_Num": "62",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.671247723161002,
+                    39.86812623961
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 44,
+                "Territory_Num": "27",
+                "Station_Name": "Cochranville FC",
+                "Dept_Name": "Cochranville Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "3135 Limestone RD",
+                "City": "Cochranville",
+                "State": "PA",
+                "ZIP_Code": "19330",
+                "Muni_Abrv": "WFALLO",
+                "Muni_Name": "West Fallowfield Township",
+                "Muni_Num": "44",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.922180791712094,
+                    39.890932013344198
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 48,
+                "Territory_Num": "36",
+                "Station_Name": "Po-Mar-Lin FC",
+                "Dept_Name": "Po-Mar-Lin Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "36 Firehouse Dr DR",
+                "City": "Unionville",
+                "State": "PA",
+                "ZIP_Code": "19375",
+                "Muni_Abrv": "EMARLB",
+                "Muni_Name": "East Marlborough Township",
+                "Muni_Num": "61",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.730697157900806,
+                    39.8941069565658
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 57,
+                "Territory_Num": "39",
+                "Station_Name": "West Bradford FC",
+                "Dept_Name": "West Bradford Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "1305 W Strasburg RD",
+                "City": "West Chester",
+                "State": "PA",
+                "ZIP_Code": "19380",
+                "Muni_Abrv": "WBRAD",
+                "Muni_Name": "West Bradford Township",
+                "Muni_Num": "50",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.678103852212701,
+                    39.950708955731997
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 58,
+                "Territory_Num": "51",
+                "Station_Name": "First  West Chester FC",
+                "Dept_Name": "West Chester Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "70 S Bradford AV",
+                "City": "West Chester",
+                "State": "PA",
+                "ZIP_Code": "19382",
+                "Muni_Abrv": "EBRAD",
+                "Muni_Name": "East Bradford Township",
+                "Muni_Num": "51",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.615493181968603,
+                    39.952031626067701
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 59,
+                "Territory_Num": "53",
+                "Station_Name": "Fame FC",
+                "Dept_Name": "West Chester Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "200 E Rosedale AV",
+                "City": "West Chester",
+                "State": "PA",
+                "ZIP_Code": "19382",
+                "Muni_Abrv": "WGOSHN",
+                "Muni_Name": "West Goshen Township",
+                "Muni_Num": "52",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.592449387543297,
+                    39.952905598227403
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 60,
+                "Territory_Num": "08",
+                "Station_Name": "Keystone Valley FD Central",
+                "Dept_Name": "Keystone Valley Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "329 W First AV",
+                "City": "Parkesburg",
+                "State": "PA",
+                "ZIP_Code": "19365",
+                "Muni_Abrv": "PRKSBG",
+                "Muni_Name": "Parkesburg Borough",
+                "Muni_Num": "08",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.918624647711695,
+                    39.959371922913498
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 61,
+                "Territory_Num": "37",
+                "Station_Name": "Modena FC",
+                "Dept_Name": "Modena Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "5 N Brandywine AV",
+                "City": "Modena",
+                "State": "PA",
+                "ZIP_Code": "19320",
+                "Muni_Abrv": "MODNA",
+                "Muni_Name": "Modena Borough",
+                "Muni_Num": "10",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.8025492596324,
+                    39.961352034368801
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 62,
+                "Territory_Num": "108",
+                "Station_Name": "Keystone Valley FD East",
+                "Dept_Name": "Keystone Valley Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "1918 Valley RD",
+                "City": "Pomeroy",
+                "State": "PA",
+                "ZIP_Code": "19367",
+                "Muni_Abrv": "SADS",
+                "Muni_Name": "Sadsbury Township",
+                "Muni_Num": "37",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.880643538979001,
+                    39.964817933830403
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 63,
+                "Territory_Num": "52",
+                "Station_Name": "Good Will FC",
+                "Dept_Name": "West Chester Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "552 E Union ST",
+                "City": "West Chester",
+                "State": "PA",
+                "ZIP_Code": "19382",
+                "Muni_Abrv": "WCHEST",
+                "Muni_Name": "West Chester Borough",
+                "Muni_Num": "01",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.592750571153502,
+                    39.960756425065902
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 64,
+                "Territory_Num": "15",
+                "Station_Name": "CC Haz-Mat Team",
+                "Dept_Name": "CC Haz-Mat Team",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "601 Westtown RD",
+                "City": "West Chester",
+                "State": "PA",
+                "ZIP_Code": "19382",
+                "Muni_Abrv": "WGOSHN",
+                "Muni_Name": "West Goshen Township",
+                "Muni_Num": "52",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.583995327569994,
+                    39.961003262233099
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 66,
+                "Territory_Num": "44",
+                "Station_Name": "Westwood FC",
+                "Dept_Name": "Westwood Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "1403 Valley RD",
+                "City": "Coatesville City",
+                "State": "PA",
+                "ZIP_Code": "19320",
+                "Muni_Abrv": "VALLY",
+                "Muni_Name": "Valley Township",
+                "Muni_Num": "38",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.856986505447196,
+                    39.971191533078702
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 67,
+                "Territory_Num": "54",
+                "Station_Name": "Goshen FC ",
+                "Dept_Name": "Goshen Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "1320 Park AV",
+                "City": "West Chester",
+                "State": "PA",
+                "ZIP_Code": "19380",
+                "Muni_Abrv": "EGOSHN",
+                "Muni_Name": "East Goshen Township",
+                "Muni_Num": "53",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.551980257054296,
+                    39.969679777887201
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 70,
+                "Territory_Num": "75",
+                "Station_Name": "Cliffs Emergency Services",
+                "Dept_Name": null,
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "17 Rolling Mills DR",
+                "City": "Coatesville",
+                "State": "PA",
+                "ZIP_Code": "19320",
+                "Muni_Abrv": "COATVL",
+                "Muni_Name": "City of Coatesville",
+                "Muni_Num": "16",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.827789521670397,
+                    39.978306561799201
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 71,
+                "Territory_Num": "78",
+                "Station_Name": "Sikorsky Aircraft FC",
+                "Dept_Name": null,
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "110 E Stewart Huston DR",
+                "City": "Coatesville",
+                "State": "PA",
+                "ZIP_Code": "19320",
+                "Muni_Abrv": "SADS",
+                "Muni_Name": "Sadsbury Township",
+                "Muni_Num": "37",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.882168898109001,
+                    39.979868406798801
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 72,
+                "Territory_Num": "43",
+                "Station_Name": "West End FC Coatesville",
+                "Dept_Name": "Coatesville Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "134 Strode AV",
+                "City": "Coatesville City",
+                "State": "PA",
+                "ZIP_Code": "19320",
+                "Muni_Abrv": "COATVL",
+                "Muni_Name": "City of Coatesville",
+                "Muni_Num": "16",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.830673103503898,
+                    39.979236249330903
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 73,
+                "Territory_Num": "31",
+                "Station_Name": "Sadsburyville Fire Co",
+                "Dept_Name": "Sadsburyville Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "24 First AV",
+                "City": "Sadsburyville",
+                "State": "PA",
+                "ZIP_Code": "19369",
+                "Muni_Abrv": "SADS",
+                "Muni_Name": "Sadsbury Township",
+                "Muni_Num": "37",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.890093812379305,
+                    39.981069388773797
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 75,
+                "Territory_Num": "139",
+                "Station_Name": "West Bradford FC (Substation)",
+                "Dept_Name": "West Bradford Fire Co.",
+                "Main_Station_YN": "N",
+                "Chesco_Service_YN": "Y",
+                "Address": "1381 Campus DR",
+                "City": "Downingtown",
+                "State": "PA",
+                "ZIP_Code": "19335",
+                "Muni_Abrv": "WBRAD",
+                "Muni_Name": "West Bradford Township",
+                "Muni_Num": "50",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.733858075145093,
+                    39.981209626321103
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 76,
+                "Territory_Num": "41",
+                "Station_Name": "Washington Hose",
+                "Dept_Name": "Coatesville Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "376 E Lincoln HW",
+                "City": "Coatesville City ",
+                "State": "PA",
+                "ZIP_Code": "19320",
+                "Muni_Abrv": "COATVL",
+                "Muni_Name": "City of Coatesville",
+                "Muni_Num": "16",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.817566393585395,
+                    39.983913434949002
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 82,
+                "Territory_Num": "38",
+                "Station_Name": "Thorndale FC",
+                "Dept_Name": "Thorndale Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "3611 Lincoln HW",
+                "City": "Thorndale",
+                "State": "PA",
+                "ZIP_Code": "19372",
+                "Muni_Abrv": "CLN",
+                "Muni_Name": "Caln Township",
+                "Muni_Num": "39",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.7493240890783,
+                    39.996801182609502
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 83,
+                "Territory_Num": "76",
+                "Station_Name": "Coatesville VA FD",
+                "Dept_Name": "Coatesville VA Hosp Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "1400 Blackhorse Hill RD",
+                "City": "Coatesville",
+                "State": "PA",
+                "ZIP_Code": "19320",
+                "Muni_Abrv": "CLN",
+                "Muni_Name": "Caln Township",
+                "Muni_Num": "39",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.797891100937903,
+                    39.999147117764899
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 84,
+                "Territory_Num": "45",
+                "Station_Name": "Alert FC",
+                "Dept_Name": "Downingtown Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "122 W Pennsylvania AV",
+                "City": "Downingtown",
+                "State": "PA",
+                "ZIP_Code": "19335",
+                "Muni_Abrv": "DNGTWN",
+                "Muni_Name": "Downingtown Borough",
+                "Muni_Num": "11",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.709901768699297,
+                    40.004515022953001
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 85,
+                "Territory_Num": "56",
+                "Station_Name": "Goshen FC (Substation)",
+                "Dept_Name": "Goshen Fire Co.",
+                "Main_Station_YN": "N",
+                "Chesco_Service_YN": "Y",
+                "Address": "1299 Boot RD",
+                "City": "West Chester",
+                "State": "PA",
+                "ZIP_Code": "19380",
+                "Muni_Abrv": "WGOSHN",
+                "Muni_Name": "West Goshen Township",
+                "Muni_Num": "52",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.579436941573206,
+                    40.004340707147499
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 86,
+                "Territory_Num": "35",
+                "Station_Name": "Wagontown FC",
+                "Dept_Name": "Wagontown Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "412 W Kings HW",
+                "City": "Wagontown",
+                "State": "PA",
+                "ZIP_Code": "19376",
+                "Muni_Abrv": "WCALN",
+                "Muni_Name": "West Caln Township",
+                "Muni_Num": "28",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.8405211756113,
+                    40.009225330214299
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 87,
+                "Territory_Num": "46",
+                "Station_Name": "Minquas FC",
+                "Dept_Name": "Downingtown Fire Dept.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "141 Wallace AV",
+                "City": "Downingtown",
+                "State": "PA",
+                "ZIP_Code": "19335",
+                "Muni_Abrv": "DNGTWN",
+                "Muni_Name": "Downingtown Borough",
+                "Muni_Num": "11",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.703662151677705,
+                    40.012151561963698
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 91,
+                "Territory_Num": "06",
+                "Station_Name": "West Whiteland FC",
+                "Dept_Name": "West Whiteland Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "227 Crest AV",
+                "City": "Exton",
+                "State": "PA",
+                "ZIP_Code": "19341",
+                "Muni_Abrv": "WWHITE",
+                "Muni_Name": "West Whiteland Township",
+                "Muni_Num": "41",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.625029769982007,
+                    40.024101042252298
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 96,
+                "Territory_Num": "49",
+                "Station_Name": "East Brandywine FC",
+                "Dept_Name": "East Brandywine Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "2096 Bondsville RD",
+                "City": "Downingtown",
+                "State": "PA",
+                "ZIP_Code": "19335",
+                "Muni_Abrv": "EBRAND",
+                "Muni_Name": "East Brandywine Township",
+                "Muni_Num": "30",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.764269361891294,
+                    40.032456342467299
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 98,
+                "Territory_Num": "04",
+                "Station_Name": "Malvern FC",
+                "Dept_Name": "Malvern Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "424 E King ST",
+                "City": "Malvern",
+                "State": "PA",
+                "ZIP_Code": "19355",
+                "Muni_Abrv": "MALVRN",
+                "Muni_Name": "Malvern Borough",
+                "Muni_Num": "02",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.506784184435006,
+                    40.0370860293147
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 99,
+                "Territory_Num": "03",
+                "Station_Name": "Paoli FC",
+                "Dept_Name": "Paoli Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "69 Darby RD",
+                "City": "Paoli",
+                "State": "PA",
+                "ZIP_Code": "19301",
+                "Muni_Abrv": "TREDYF",
+                "Muni_Name": "Tredyffrin Township",
+                "Muni_Num": "43",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.4811112803295,
+                    40.040413574314996
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 101,
+                "Territory_Num": "01",
+                "Station_Name": "Radnor FC/AMB",
+                "Dept_Name": "Radnor Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "121 S Wayne AV",
+                "City": "Wayne",
+                "State": "PA",
+                "ZIP_Code": "19087",
+                "Muni_Abrv": "RDNOR",
+                "Muni_Name": "Radnor Township",
+                "Muni_Num": "99",
+                "County": "Delaware County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.387706028888502,
+                    40.043169345936199
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 105,
+                "Territory_Num": "02",
+                "Station_Name": "Berwyn FC",
+                "Dept_Name": "Berwyn Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "23 Bridge AV",
+                "City": "Berwyn",
+                "State": "PA",
+                "ZIP_Code": "19312",
+                "Muni_Abrv": "EASTWN",
+                "Muni_Name": "Easttown Township",
+                "Muni_Num": "55",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.444240851880394,
+                    40.045843821591099
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 106,
+                "Territory_Num": "05",
+                "Station_Name": "East Whiteland FC",
+                "Dept_Name": "East Whiteland Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "205 Conestoga RD",
+                "City": "Malvern",
+                "State": "PA",
+                "ZIP_Code": "19355",
+                "Muni_Abrv": "EWHITE",
+                "Muni_Name": "East Whiteland Township",
+                "Muni_Num": "42",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.556146109732197,
+                    40.049983216103001
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 107,
+                "Territory_Num": "47",
+                "Station_Name": "Lionville FC",
+                "Dept_Name": "Lionville Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "11 S Village AV",
+                "City": "Lionville",
+                "State": "PA",
+                "ZIP_Code": "19353",
+                "Muni_Abrv": "UWCHLN",
+                "Muni_Name": "Uwchlan Township",
+                "Muni_Num": "33",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.658268653942997,
+                    40.054054171988
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 112,
+                "Territory_Num": "102",
+                "Station_Name": "Berwyn FC (Substation)",
+                "Dept_Name": "Berwyn Fire Co.",
+                "Main_Station_YN": "N",
+                "Chesco_Service_YN": "Y",
+                "Address": "1485 Valley Forge RD",
+                "City": "Wayne",
+                "State": "PA",
+                "ZIP_Code": "19087",
+                "Muni_Abrv": "TREDYF",
+                "Muni_Name": "Tredyffrin Township",
+                "Muni_Num": "43",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.442382685801107,
+                    40.081131426057901
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 113,
+                "Territory_Num": "48",
+                "Station_Name": "Glenmoore FC",
+                "Dept_Name": "Glenmoore Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "578 Fairview RD",
+                "City": "Glenmore",
+                "State": "PA",
+                "ZIP_Code": "19343",
+                "Muni_Abrv": "WALLAC",
+                "Muni_Name": "Wallace Township",
+                "Muni_Num": "31",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.775849485141805,
+                    40.091678152108997
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 114,
+                "Territory_Num": "33",
+                "Station_Name": "Honey Brook FC",
+                "Dept_Name": "Honey Brook Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "679 Firehouse LA",
+                "City": "Honey Brook",
+                "State": "PA",
+                "ZIP_Code": "19344",
+                "Muni_Abrv": "HBBORO",
+                "Muni_Name": "Honey Brook Borough",
+                "Muni_Num": "12",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.912981377882303,
+                    40.094527109330201
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 124,
+                "Territory_Num": "68",
+                "Station_Name": "Valley Forge FC ",
+                "Dept_Name": "Valley Forge Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "630 Valley Park RD",
+                "City": "Phoenixville",
+                "State": "PA",
+                "ZIP_Code": "19460",
+                "Muni_Abrv": "SCHYKL",
+                "Muni_Name": "Schuylkill Township",
+                "Muni_Num": "27",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.474630455444299,
+                    40.100105209925701
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 127,
+                "Territory_Num": "168",
+                "Station_Name": "Valley Forge FC (Substation)",
+                "Dept_Name": "Valley Forge Fire Co.",
+                "Main_Station_YN": "N",
+                "Chesco_Service_YN": "Y",
+                "Address": "300 W Pothouse RD",
+                "City": "Phoenixville",
+                "State": "PA",
+                "ZIP_Code": "19460",
+                "Muni_Abrv": "SCHYKL",
+                "Muni_Name": "Schuylkill Township",
+                "Muni_Num": "27",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.531046067823198,
+                    40.118633680629003
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 128,
+                "Territory_Num": "73",
+                "Station_Name": "Ludwigs Corner",
+                "Dept_Name": "Ludwigs Corner Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "1325 Pottstown PK",
+                "City": "Glenmore",
+                "State": "PA",
+                "ZIP_Code": "19425",
+                "Muni_Abrv": "WVINCT",
+                "Muni_Name": "West Vincent Township",
+                "Muni_Num": "25",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.6943139828754,
+                    40.122291951632498
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 130,
+                "Territory_Num": "61",
+                "Station_Name": "Kimberton FC",
+                "Dept_Name": "Kimberton Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "61 Firehouse LA",
+                "City": "Kimberton",
+                "State": "PA",
+                "ZIP_Code": "19442",
+                "Muni_Abrv": "EPIKEL",
+                "Muni_Name": "East Pikeland Township",
+                "Muni_Num": "26",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.566471269585094,
+                    40.130543138918803
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 132,
+                "Territory_Num": "65",
+                "Station_Name": "Phoenixville FD",
+                "Dept_Name": "Phoenixville FD",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "150 Paradise ST",
+                "City": "Phoenixville",
+                "State": "PA",
+                "ZIP_Code": "19460",
+                "Muni_Abrv": "PHNXVL",
+                "Muni_Name": "Phoenixville Borough",
+                "Muni_Num": "15",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.526830402462906,
+                    40.133465126905101
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 141,
+                "Territory_Num": "69",
+                "Station_Name": "Twin Valley FC ",
+                "Dept_Name": "Twin Valley Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "4456 Main ST",
+                "City": "Elverson",
+                "State": "PA",
+                "ZIP_Code": "19520",
+                "Muni_Abrv": "CARNVON",
+                "Muni_Name": "Caernarvon Township",
+                "Muni_Num": "99",
+                "County": "Berks County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.845497414028301,
+                    40.154904923754202
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 145,
+                "Territory_Num": "62",
+                "Station_Name": "Ridge FC",
+                "Dept_Name": "Ridge Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "480 Ridge RD",
+                "City": "Spring City",
+                "State": "PA",
+                "ZIP_Code": "19475",
+                "Muni_Abrv": "ECVNTY",
+                "Muni_Name": "East Coventry Township",
+                "Muni_Num": "18",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.616677841214795,
+                    40.173967606031198
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 151,
+                "Territory_Num": "63",
+                "Station_Name": "Liberty FC",
+                "Dept_Name": "Liberty Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "20 S Main ST",
+                "City": "Spring City",
+                "State": "PA",
+                "ZIP_Code": "19475",
+                "Muni_Abrv": "SPRCTY",
+                "Muni_Name": "Spring City Borough",
+                "Muni_Num": "14",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.545789284137697,
+                    40.177214220825803
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "OBJECTID": 171,
+                "Territory_Num": "64",
+                "Station_Name": "Norco FC",
+                "Dept_Name": "Norco Fire Co.",
+                "Main_Station_YN": "Y",
+                "Chesco_Service_YN": "Y",
+                "Address": "144 W Schuylkill RD",
+                "City": "Pottstown",
+                "State": "PA",
+                "ZIP_Code": "19465",
+                "Muni_Abrv": "NCVNTY",
+                "Muni_Name": "North Coventry Township",
+                "Muni_Num": "17",
+                "County": "Chester County",
+                "URL": null
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.656830906608704,
+                    40.232702641066702
+                ]
+            }
+        }
+    ]
+}
