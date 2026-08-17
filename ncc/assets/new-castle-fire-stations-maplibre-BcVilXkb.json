@@ -1,0 +1,1035 @@
+{
+  "type": "FeatureCollection",
+  "name": "new-castle-fire-stations",
+  "properties": {
+    "source": "Delaware FirstMap",
+    "sourceLayer": "Society/DE_Fire_Districts/Fire Stations",
+    "county": "New Castle",
+    "state": "DE",
+    "coordinateSystem": "EPSG:4326",
+    "description": "New Castle County fire stations and substations, including Wilmington.",
+    "featureCount": 34
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": 10,
+      "properties": {
+        "id": 10,
+        "stationNumber": "10",
+        "company": "Aetna Hose Hook & Ladder",
+        "stationType": "Sub",
+        "address": "2501 Old County Road",
+        "city": "Newark",
+        "state": "DE",
+        "zip": "19715",
+        "phone": "302-267-7756",
+        "label": "Aetna Hose Hook & Ladder 10",
+        "mapLabel": "Aetna Hose Hook & Ladder 10",
+        "shortLabel": "10",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.74682123060435,
+          39.59012623768082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "properties": {
+        "id": 7,
+        "stationNumber": "7",
+        "company": "Aetna Hose Hook & Ladder",
+        "stationType": "Sub",
+        "address": "7 Thorn Lane",
+        "city": "Newark",
+        "state": "DE",
+        "zip": "19711",
+        "phone": "302-454-3307",
+        "label": "Aetna Hose Hook & Ladder 7",
+        "mapLabel": "Aetna Hose Hook & Ladder 7",
+        "shortLabel": "7",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.76824497844046,
+          39.67384268041811
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "properties": {
+        "id": 8,
+        "stationNumber": "8",
+        "company": "Aetna Hose Hook & Ladder",
+        "stationType": "Sub",
+        "address": "410 Ogletown Road",
+        "city": "Newark",
+        "state": "DE",
+        "zip": "19712",
+        "phone": "302-454-3308",
+        "label": "Aetna Hose Hook & Ladder 8",
+        "mapLabel": "Aetna Hose Hook & Ladder 8",
+        "shortLabel": "8",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7354274999022,
+          39.68525699972668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "properties": {
+        "id": 9,
+        "stationNumber": "9",
+        "company": "Aetna Hose Hook & Ladder",
+        "stationType": "Station",
+        "address": "31 Academy Street",
+        "city": "Newark",
+        "state": "DE",
+        "zip": "19713",
+        "phone": "302-454-3308",
+        "label": "Aetna Hose Hook & Ladder 9",
+        "mapLabel": "Aetna Hose Hook & Ladder 9",
+        "shortLabel": "9",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.74915249980215,
+          39.68225999984884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 77,
+      "properties": {
+        "id": 77,
+        "stationNumber": "9A",
+        "company": "Aetna Hose Hook & Ladder",
+        "stationType": "Sub",
+        "address": "26 Academy Street",
+        "city": "Newark",
+        "state": "DE",
+        "zip": "19714",
+        "phone": "",
+        "label": "Aetna Hose Hook & Ladder 9A",
+        "mapLabel": "Aetna Hose Hook & Ladder 9A",
+        "shortLabel": "9A",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.74968799991605,
+          39.68243999992551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "properties": {
+        "id": 31,
+        "stationNumber": "33",
+        "company": "Air National Guard",
+        "stationType": "Station",
+        "address": "2600 Spruance Drive",
+        "city": "New Castle",
+        "state": "DE",
+        "zip": "19720",
+        "phone": "302-323-3450",
+        "label": "Air National Guard 33",
+        "mapLabel": "Air National Guard 33",
+        "shortLabel": "33",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.5987097563018,
+          39.68353610885256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "properties": {
+        "id": 28,
+        "stationNumber": "30",
+        "company": "Belvedere",
+        "stationType": "Station",
+        "address": "1000 Liberty Road",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19804",
+        "phone": "302-998-8021",
+        "label": "Belvedere 30",
+        "mapLabel": "Belvedere 30",
+        "shortLabel": "30",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.61997580668643,
+          39.72738919189869
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "properties": {
+        "id": 11,
+        "stationNumber": "11",
+        "company": "Brandywine Hundred",
+        "stationType": "Station",
+        "address": "1006 Brandywine Blvd Bellefonte",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19809",
+        "phone": "302-764-4901",
+        "label": "Brandywine Hundred 11",
+        "mapLabel": "Brandywine Hundred 11",
+        "shortLabel": "11",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.49880849983045,
+          39.767003999751886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "properties": {
+        "id": 12,
+        "stationNumber": "12",
+        "company": "Christiana",
+        "stationType": "Station",
+        "address": "2 East Main Street",
+        "city": "Christiana",
+        "state": "DE",
+        "zip": "19702",
+        "phone": "302-737-2433",
+        "label": "Christiana 12",
+        "mapLabel": "Christiana 12",
+        "shortLabel": "12",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.66001650008376,
+          39.664907999683265
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "properties": {
+        "id": 5,
+        "stationNumber": "3",
+        "company": "Christiana",
+        "stationType": "Sub",
+        "address": "600 Salem Church Road",
+        "city": "Newark",
+        "state": "DE",
+        "zip": "19702",
+        "phone": "",
+        "label": "Christiana 3",
+        "mapLabel": "Christiana 3",
+        "shortLabel": "3",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.70441349978957,
+          39.63723300022179
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "properties": {
+        "id": 6,
+        "stationNumber": "6",
+        "company": "Christiana",
+        "stationType": "Sub",
+        "address": "1714 Porter Road",
+        "city": "Bear",
+        "state": "DE",
+        "zip": "19701",
+        "phone": "",
+        "label": "Christiana 6",
+        "mapLabel": "Christiana 6",
+        "shortLabel": "6",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.69606710875436,
+          39.5945551063745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 90,
+      "properties": {
+        "id": 90,
+        "stationNumber": "13",
+        "company": "Claymont",
+        "stationType": "Sub",
+        "address": "1610 Naamans  Road",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "",
+        "phone": "",
+        "label": "Claymont 13",
+        "mapLabel": "Claymont 13",
+        "shortLabel": "13",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.48679208482112,
+          39.82206932746816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "properties": {
+        "id": 13,
+        "stationNumber": "13",
+        "company": "Claymont",
+        "stationType": "Station",
+        "address": "3223 Philadelphia Pike",
+        "city": "Claymont",
+        "state": "DE",
+        "zip": "19703",
+        "phone": "302-798-6858",
+        "label": "Claymont 13",
+        "mapLabel": "Claymont 13",
+        "shortLabel": "13",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.46207050030442,
+          39.79989899972024
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "properties": {
+        "id": 19,
+        "stationNumber": "14",
+        "company": "Cranston Heights",
+        "stationType": "Station",
+        "address": "3306 Kirkwood Highway",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19808",
+        "phone": "302-998-3140",
+        "label": "Cranston Heights 14",
+        "mapLabel": "Cranston Heights 14",
+        "shortLabel": "14",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.62782800034785,
+          39.736350000132184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "properties": {
+        "id": 14,
+        "stationNumber": "15",
+        "company": "Delaware City",
+        "stationType": "Station",
+        "address": "815 Fifth Street",
+        "city": "Delaware City",
+        "state": "DE",
+        "zip": "19706",
+        "phone": "302-834-9336",
+        "label": "Delaware City 15",
+        "mapLabel": "Delaware City 15",
+        "shortLabel": "15",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.59778150016926,
+          39.57462000030069
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "properties": {
+        "id": 15,
+        "stationNumber": "16",
+        "company": "Elsmere",
+        "stationType": "Station",
+        "address": "1107 Kirkwood Highway",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19805",
+        "phone": "302-999-0183",
+        "label": "Elsmere 16",
+        "mapLabel": "Elsmere 16",
+        "shortLabel": "16",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.59930700032014,
+          39.739769999930154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "properties": {
+        "id": 16,
+        "stationNumber": "17",
+        "company": "Five Points",
+        "stationType": "Station",
+        "address": "209 South Maryland Avenue",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19804",
+        "phone": "302-994-2245",
+        "label": "Five Points 17",
+        "mapLabel": "Five Points 17",
+        "shortLabel": "17",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.58876800044115,
+          39.7267920000609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "properties": {
+        "id": 17,
+        "stationNumber": "18",
+        "company": "Goodwill",
+        "stationType": "Station",
+        "address": "401 South Street",
+        "city": "New Castle",
+        "state": "DE",
+        "zip": "19720",
+        "phone": "302-328-2211",
+        "label": "Goodwill 18",
+        "mapLabel": "Goodwill 18",
+        "shortLabel": "18",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.56705561851436,
+          39.65921412839053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "properties": {
+        "id": 18,
+        "stationNumber": "19",
+        "company": "Hockessin",
+        "stationType": "Station",
+        "address": "1225 Old Lancaster Pike",
+        "city": "Hockessin",
+        "state": "DE",
+        "zip": "19707",
+        "phone": "302-239-7159",
+        "label": "Hockessin 19",
+        "mapLabel": "Hockessin 19",
+        "shortLabel": "19",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.69613349964375,
+          39.78784799979241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "properties": {
+        "id": 20,
+        "stationNumber": "20",
+        "company": "Holloway Terrace",
+        "stationType": "Station",
+        "address": "700 West Avenue",
+        "city": "Newcastle",
+        "state": "DE",
+        "zip": "19720",
+        "phone": "302-654-2817",
+        "label": "Holloway Terrace 20",
+        "mapLabel": "Holloway Terrace 20",
+        "shortLabel": "20",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.54710249993492,
+          39.70066500003751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "properties": {
+        "id": 25,
+        "stationNumber": "21",
+        "company": "Mill Creek",
+        "stationType": "Station",
+        "address": "3808 Kirkwood Highway",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19808",
+        "phone": "302-998-8911",
+        "label": "Mill Creek 21",
+        "mapLabel": "Mill Creek 21",
+        "shortLabel": "21",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.64302899963326,
+          39.731120999679646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "properties": {
+        "id": 2,
+        "stationNumber": "2",
+        "company": "Millcreek",
+        "stationType": "Sub",
+        "address": "4021 Skyline Drive",
+        "city": "Pike Creek",
+        "state": "DE",
+        "zip": "19808",
+        "phone": "302-992-9671",
+        "label": "Millcreek 2",
+        "mapLabel": "Millcreek 2",
+        "shortLabel": "2",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.69356849958884,
+          39.73824000013042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "properties": {
+        "id": 21,
+        "stationNumber": "22",
+        "company": "Minquadale",
+        "stationType": "Station",
+        "address": "129 East Hazeldell Avenue",
+        "city": "New Castle",
+        "state": "DE",
+        "zip": "19720",
+        "phone": "302-652-0986",
+        "label": "Minquadale 22",
+        "mapLabel": "Minquadale 22",
+        "shortLabel": "22",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.56390549990078,
+          39.70677600005651
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "properties": {
+        "id": 22,
+        "stationNumber": "23",
+        "company": "Minquas",
+        "stationType": "Station",
+        "address": "21 North James Street",
+        "city": "Newport",
+        "state": "DE",
+        "zip": "19804",
+        "phone": "302-998-3474",
+        "label": "Minquas 23",
+        "mapLabel": "Minquas 23",
+        "shortLabel": "23",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.60997650025709,
+          39.714416999955446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "properties": {
+        "id": 23,
+        "stationNumber": "24",
+        "company": "Odessa",
+        "stationType": "Station",
+        "address": "306 Main Street",
+        "city": "Odessa",
+        "state": "DE",
+        "zip": "19732",
+        "phone": "302-378-8929",
+        "label": "Odessa 24",
+        "mapLabel": "Odessa 24",
+        "shortLabel": "24",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.65862315738254,
+          39.45487720183076
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "properties": {
+        "id": 3,
+        "stationNumber": "4",
+        "company": "Odessa",
+        "stationType": "Sub",
+        "address": "1324 Pole Bridge Road",
+        "city": "Middletown",
+        "state": "DE",
+        "zip": "19709",
+        "phone": "",
+        "label": "Odessa 4",
+        "mapLabel": "Odessa 4",
+        "shortLabel": "4",
+        "icon": "fire-substation",
+        "category": "fire-station",
+        "isSubstation": true,
+        "labelPriority": 0,
+        "markerSize": 0.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.64761101214846,
+          39.49960685530164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "properties": {
+        "id": 27,
+        "stationNumber": "29",
+        "company": "Port Penn",
+        "stationType": "Station",
+        "address": "26 West Market Street",
+        "city": "Port Penn",
+        "state": "DE",
+        "zip": "19731",
+        "phone": "302-834-7483",
+        "label": "Port Penn 29",
+        "mapLabel": "Port Penn 29",
+        "shortLabel": "29",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.58587449996153,
+          39.51818099974007
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "properties": {
+        "id": 26,
+        "stationNumber": "25",
+        "company": "Talleyville",
+        "stationType": "Station",
+        "address": "3919 Concord Pike",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19803",
+        "phone": "302-478-1110",
+        "label": "Talleyville 25",
+        "mapLabel": "Talleyville 25",
+        "shortLabel": "25",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.54858299987994,
+          39.80731500031378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "properties": {
+        "id": 24,
+        "stationNumber": "26",
+        "company": "Townsend",
+        "stationType": "Station",
+        "address": "107 Main Street",
+        "city": "Townsend",
+        "state": "DE",
+        "zip": "19734",
+        "phone": "302-378-8111",
+        "label": "Townsend 26",
+        "mapLabel": "Townsend 26",
+        "shortLabel": "26",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.68622899961288,
+          39.397599000023
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "properties": {
+        "id": 29,
+        "stationNumber": "27",
+        "company": "Volunteer Hose",
+        "stationType": "Station",
+        "address": "27 West Green Street",
+        "city": "Middletown",
+        "state": "DE",
+        "zip": "19709",
+        "phone": "302-378-7799",
+        "label": "Volunteer Hose 27",
+        "mapLabel": "Volunteer Hose 27",
+        "shortLabel": "27",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.71903399965353,
+          39.44868300008877
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1,
+      "properties": {
+        "id": 1,
+        "stationNumber": "UD1",
+        "company": "UD1",
+        "stationType": "Station",
+        "address": "413 Academy Street",
+        "city": "Newark",
+        "state": "DE",
+        "zip": "19716",
+        "phone": "302-831-4138",
+        "label": "UD1",
+        "mapLabel": "UD1",
+        "shortLabel": "1",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.75003000022282,
+          39.675617999853266
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 74,
+      "properties": {
+        "id": 74,
+        "stationNumber": "100",
+        "company": "Wilmington",
+        "stationType": "Station",
+        "address": "22 South Heald Street.",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801",
+        "phone": "302-576-3950",
+        "label": "Wilmington 100",
+        "mapLabel": "Wilmington 100",
+        "shortLabel": "100",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.54105900031769,
+          39.7325609998646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "properties": {
+        "id": 32,
+        "stationNumber": "28",
+        "company": "Wilmington Manor",
+        "stationType": "Station",
+        "address": "301 North Dupont Highway",
+        "city": "New Castle",
+        "state": "DE",
+        "zip": "19720",
+        "phone": "302-328-3209",
+        "label": "Wilmington Manor 28",
+        "mapLabel": "Wilmington Manor 28",
+        "shortLabel": "28",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.58804649606283,
+          39.68379350923247
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 39,
+      "properties": {
+        "id": 39,
+        "stationNumber": "32",
+        "company": "Wilmington Manor",
+        "stationType": "Station",
+        "address": "223 North Dupont Highway",
+        "city": "New Castle",
+        "state": "DE",
+        "zip": "19720",
+        "phone": "302-328-3209",
+        "label": "Wilmington Manor 32",
+        "mapLabel": "Wilmington Manor 32",
+        "shortLabel": "32",
+        "icon": "fire-station",
+        "category": "fire-station",
+        "isSubstation": false,
+        "labelPriority": 1,
+        "markerSize": 1.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.616671,
+          39.655383
+        ]
+      }
+    }
+  ]
+}
