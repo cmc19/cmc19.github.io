@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="430"
+   height="430"
+   fill="none"
+   viewBox="0 0 430 430"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="hydrant.svg"
+   inkscape:export-filename="hydrant.png"
+   inkscape:export-xdpi="11.302143"
+   inkscape:export-ydpi="11.302143"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="2.727907"
+     inkscape:cx="215.18329"
+     inkscape:cy="215"
+     inkscape:window-width="1350"
+     inkscape:window-height="1237"
+     inkscape:window-x="1229"
+     inkscape:window-y="100"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg9" />
+  <path
+     fill="#f24c00"
+     d="M276.88 265.95v73.72h9.71c19.37 0 35.07 15.7 35.07 35.07H108.17c0-9.68 3.93-18.45 10.27-24.8 6.35-6.34 15.12-10.27 24.8-10.27h9.71v-73.4l-30.33-11.3v-17.01H99.5v-23.01h23.12v-17.01l30.33-11.3v-24.08h-30.03v-5.25c0-12.56 10.18-22.75 22.75-22.75h4.62v-.02c0-28.74 23.29-52.04 52.04-52.04h1.09v-28h23v28h1.09c28.74 0 52.04 23.3 52.04 52.04v.02h4.62c12.56 0 22.75 10.19 22.75 22.75v5.25h-30.04v23.76l30.33 11.3v17.01h23.12v23.01h-23.12v17.01z"
+     id="path1" />
+  <path
+     fill="#f24c00"
+     d="M152.95 186.64v79.63l-30.33-11.3v-17.01H99.5v-23.01h23.12v-17.01zm177.381 27.99v23.01h-23.12v17.01l-30.33 11.3v-79.63l30.33 11.3v17.01zm-8.671 160.11H108.17c0-9.68 3.93-18.45 10.27-24.8 6.35-6.34 15.12-10.27 24.8-10.27h143.35c19.37 0 35.07 15.7 35.07 35.07M145.67 134.57h138.49c12.56 0 22.75 10.19 22.75 22.75v5.25H122.92v-5.25c0-12.56 10.19-22.75 22.75-22.75"
+     opacity=".5"
+     style="mix-blend-mode:multiply"
+     id="path2" />
+  <path
+     fill="#ebe6ef"
+     d="M122.62 214.95H99.5v23.01h23.12zm207.711-.32h-23.12v23.01h23.12zM226.41 54.5h-23v28h23z"
+     id="path3" />
+  <path
+     fill="#f24c00"
+     d="M214.92 265.63c21.815 0 39.5-17.685 39.5-39.5s-17.685-39.5-39.5-39.5-39.5 17.685-39.5 39.5 17.685 39.5 39.5 39.5"
+     opacity=".5"
+     style="mix-blend-mode:multiply"
+     id="path4" />
+  <path
+     fill="#ebe6ef"
+     d="M214.92 240.87c8.14 0 14.74-6.599 14.74-14.74s-6.6-14.74-14.74-14.74-14.74 6.599-14.74 14.74 6.599 14.74 14.74 14.74"
+     id="path5" />
+  <path
+     fill="#ebe6ef"
+     d="M110.99 214.95H99.5v23.01h11.49zm207.711-.32h-11.49v23.01h11.49zM214.9 54.5h-11.49v28h11.49zm5.76 185.21c-1.77.75-3.71 1.16-5.75 1.16-8.14 0-14.73-6.6-14.73-14.74s6.59-14.73 14.73-14.73c2.04 0 3.98.41 5.75 1.16-5.28 2.24-8.99 7.48-8.99 13.57s3.71 11.34 8.99 13.58"
+     opacity=".5"
+     style="mix-blend-mode:multiply"
+     id="path6" />
+  <path
+     stroke="#121331"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width="7"
+     d="M183.67 339.62v-50m62.5 50v-50m-31.25 50v-31.6m-69.25-173.46h138.49c12.56 0 22.75 10.19 22.75 22.75v5.25H122.92v-5.25c0-12.56 10.19-22.75 22.75-22.75m-23.05 103.4H99.5v-23.01h23.12m184.591-.32h23.12v23.01h-23.12M203.42 82.5v-28h23v28m-83.18 257.17h143.35c19.36 0 35.07 15.71 35.07 35.07H108.17c0-19.36 15.71-35.07 35.07-35.07m9.709-.05V162.56"
+     id="path7" />
+  <path
+     stroke="#121331"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width="7"
+     d="m152.949 266.27-30.33-11.3v-57.03l30.33-11.3m123.932-24.08v177.06M150.279 134.56v-.02c0-28.74 23.3-52.04 52.04-52.04h25.18c28.74 0 52.04 23.3 52.04 52.04v.02m-2.658 131.39 30.33-11.3v-57.03l-30.33-11.3m-61.961 79.63c21.815 0 39.5-17.685 39.5-39.5s-17.685-39.5-39.5-39.5-39.5 17.685-39.5 39.5 17.685 39.5 39.5 39.5"
+     id="path8" />
+  <path
+     stroke="#121331"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     stroke-width="7"
+     d="M214.92 241.19c8.14 0 14.74-6.599 14.74-14.74s-6.6-14.74-14.74-14.74-14.74 6.599-14.74 14.74 6.599 14.74 14.74 14.74"
+     id="path9" />
+</svg>
